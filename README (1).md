@@ -1,4 +1,4 @@
-# 🌿 Ryvive Roots Website
+#  Ryvive Roots Website
 
 Welcome to the official Ryvive Roots frontend website built using **React.js** and **Vite**.
 
@@ -6,7 +6,7 @@ Ryvive Roots is a modern wellness and healthy food platform focused on subscript
 
 ---
 
-# 🚀 Tech Stack
+#  Tech Stack
 
 ## Frontend
 - React.js
@@ -27,7 +27,7 @@ Ryvive Roots is a modern wellness and healthy food platform focused on subscript
 
 ---
 
-# 📂 Project Structure
+#  Project Structure
 
 ```bash
 frontend-web/
