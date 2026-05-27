@@ -8,6 +8,10 @@ import landing1 from "@/app/images/Landing-1.jpeg";
 import landing2 from "@/app/images/Landing-2.jpeg";
 import story1 from "@/app/images/Story-1.JPG";
 import menu4 from "@/app/images/Menu-4.jpeg";
+import salad from "@/app/images/salad.JPG";
+import sandwich from "@/app/images/sandwich.JPG";
+import soup from "@/app/images/soup.JPG";
+import wrap from "@/app/images/wrap.JPG";
 import { ImageWithFallback } from '../components/figma/ImageWithFallback';
 import { CREAM, CREAM_2, DARK, DARK_2, INK, SAGE, SAGE_DARK } from '../theme';
 // Testimonials Data exactly as requested
@@ -55,10 +59,10 @@ const testimonials = [
 ];
 // 4 Categories Data mapped to original card visuals
 const categories = [
-    { title: "Bowls", desc: "Macro-balanced energy reserves utilizing plant clean protein", price: "Clean Protein", image: menu4 },
-    { title: "Salads", desc: "Organic garden beds with microgreens & house seed toppings", price: "House Bowls", image: landing1 },
-    { title: "Wraps", desc: "Antioxidant wheat rolls with crisp fresh vegetables", price: "Fresh Rolls", image: landing2 },
-    { title: "Cold-Pressed Juices", desc: "Cold-pressed elixirs & premium functional wellness shots", price: "Elixirs", image: heroImage }
+    { title: "Bowls", desc: "Macro-balanced energy reserves utilizing plant clean protein", price: "Clean Protein", image: sandwich },
+    { title: "Salads", desc: "Organic garden beds with microgreens & house seed toppings", price: "House Bowls", image: salad },
+    { title: "Wraps", desc: "Antioxidant wheat rolls with crisp fresh vegetables", price: "Fresh Rolls", image: wrap },
+    { title: "Cold-Pressed Juices", desc: "Cold-pressed elixirs & premium functional wellness shots", price: "Elixirs", image: soup }
 ];
 export default function Home() {
     // Testimonial sliding state

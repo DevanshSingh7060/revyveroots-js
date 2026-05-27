@@ -43,6 +43,8 @@ export function SiteHeader() {
             width: 'auto',
             objectFit: 'contain',
             opacity: 0.95,
+            transition: 'filter 0.5s ease',
+            filter: overLight ? 'none' : 'brightness(0) saturate(100%) invert(93%) sepia(8%) saturate(400%) hue-rotate(20deg) brightness(103%) contrast(92%)',
         }}/>
           </Link>
 
