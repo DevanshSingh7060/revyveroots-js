@@ -210,19 +210,19 @@ export function BurgerMenu({ headerText, headerMuted }) {
 
           {/* TOP ROW */}
           <div className="flex gap-3">
-            <div className="overflow-hidden rounded-[8px]">
+            <a href="https://www.instagram.com/ryvive_roots/" target="_blank" rel="noreferrer" className="overflow-hidden rounded-[8px]">
               <img src={Menu1} alt="" className="h-[92px] w-[154px] object-cover transition-transform duration-700 hover:scale-[1.04]"/>
-            </div>
+            </a>
 
-            <div className="overflow-hidden rounded-[8px]">
+            <a href="https://www.instagram.com/ryvive_roots/" target="_blank" rel="noreferrer" className="overflow-hidden rounded-[8px]">
               <img src={Menu2} alt="" className="h-[92px] w-[154px] object-cover transition-transform duration-700 hover:scale-[1.04]"/>
-            </div>
+            </a>
           </div>
 
           {/* BOTTOM IMAGE */}
-          <div className="mt-5 overflow-hidden rounded-[8px]">
+          <a href="https://www.instagram.com/ryvive_roots/" target="_blank" rel="noreferrer" className="mt-5 overflow-hidden rounded-[8px]">
               <img src={Menu3} alt="" className="h-[132px] w-[320px] object-cover transition-transform duration-700 hover:scale-[1.04]"/>
-          </div>
+          </a>
         </div>
 
         {/* SOCIAL ICONS */}
