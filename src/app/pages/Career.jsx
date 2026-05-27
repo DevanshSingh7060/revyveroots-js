@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from 'motion/react';
 import { Upload, ArrowRight, CheckCircle2, Briefcase } from 'lucide-react';
 import { ImageWithFallback } from '../components/figma/ImageWithFallback';
 import { CREAM, CREAM_2, DARK, DARK_2, INK, SAGE, SAGE_DARK } from '../theme';
-import CareerBg from '../images/Subscription-1.JPG';
+import CareerBg from '../images/Career-hero.jpg';
 const ease = [0.22, 1, 0.36, 1];
 const jobCategories = [
     'Graphic Designer',

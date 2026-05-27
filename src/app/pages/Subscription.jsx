@@ -15,7 +15,13 @@ const plans = [
         tagline: 'A gentle introduction.',
         meals: '14 meals weekly',
         prices: { 1: 4999, 3: 17999 },
-        features: ['Two meals daily', 'Seasonal menu', 'Concierge support']
+        features: ['Clean Meals',
+        '1 pause available / month',
+        'Easy Digestion',
+        'Weekly Variety',
+        'Functional Juices',
+        'No calorie stress'
+]
     },
     {
         key: 'gold',
@@ -24,7 +30,12 @@ const plans = [
         meals: '21 meals weekly',
         prices: { 1: 5999, 3: 20997 },
         popular: true,
-        features: ['Three meals daily', 'Priority chef access', 'Cold-pressed elixirs', 'Personal nutritionist']
+        features: ['More nutritional variety',
+        '2 pauses / month',
+        'Gut & Skin-Friendly Meals',
+        'Advanced energy juices',
+        'Boost Energy Levels',
+        'Naturally Detoxifying Ingredients']
     },
     {
         key: 'platinum',
@@ -32,7 +43,12 @@ const plans = [
         tagline: 'A devoted ritual.',
         meals: '28 meals weekly',
         prices: { 1: 6999, 3: 23997 },
-        features: ['Four meals daily', 'Bespoke menu design', 'Private tastings', 'Wellness consultations']
+        features: ['Premium nutrition combinations',
+        '3 pauses / month',
+        'Custom meal adjustments',
+        'Priority delivery',
+        'Exclusive chef curated dishes',
+        'Surprise upgrades']
     },
 ];
 const steps = [

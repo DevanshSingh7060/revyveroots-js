@@ -12,6 +12,7 @@ import salad from "@/app/images/salad.JPG";
 import sandwich from "@/app/images/sandwich.JPG";
 import soup from "@/app/images/soup.JPG";
 import wrap from "@/app/images/wrap.JPG";
+import pasta from "@/app/images/pasta.JPG";
 import { ImageWithFallback } from '../components/figma/ImageWithFallback';
 import { CREAM, CREAM_2, DARK, DARK_2, INK, SAGE, SAGE_DARK } from '../theme';
 // Testimonials Data exactly as requested
@@ -62,7 +63,9 @@ const categories = [
     { title: "Bowls", desc: "Macro-balanced energy reserves utilizing plant clean protein", price: "Clean Protein", image: sandwich },
     { title: "Salads", desc: "Organic garden beds with microgreens & house seed toppings", price: "House Bowls", image: salad },
     { title: "Wraps", desc: "Antioxidant wheat rolls with crisp fresh vegetables", price: "Fresh Rolls", image: wrap },
-    { title: "Cold-Pressed Juices", desc: "Cold-pressed elixirs & premium functional wellness shots", price: "Elixirs", image: soup }
+    { title: "Cold-Pressed Juices", desc: "Cold-pressed elixirs & premium functional wellness shots", price: "Elixirs", image: soup },
+    { title: "Pasta", desc: "Cold-pressed elixirs & premium functional wellness shots", price: "Elixirs", image: pasta },
+    { title: "Shakes", desc: "Cold-pressed elixirs & premium functional wellness shots", price: "Elixirs", image: heroImage }
 ];
 export default function Home() {
     // Testimonial sliding state
@@ -173,36 +176,95 @@ export default function Home() {
             </Link>
           </div>
 
-          {/* Existing card designs and spacing. Loops the 8 requested categories. */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-8">
-            {categories.map((item, i) => (<motion.div key={i} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: '-50px' }} transition={{ delay: (i % 4) * 0.08, duration: 0.7 }} className="group cursor-pointer text-left">
-                <div className="relative overflow-hidden mb-7" style={{ aspectRatio: '3/4' }}>
-                  <ImageWithFallback src={item.image} alt={item.title} className="w-full h-full object-cover transition-transform duration-[1400ms] ease-out group-hover:scale-105"/>
-                </div>
+          {/* Infinite horizontal scroll marquee with navigation arrows */}
+          <div className="relative group/carousel">
+            {/* Left Arrow */}
+            <button
+              onClick={() => {
+                const el = document.querySelector('.marquee-track');
+                if (el) el.scrollBy({ left: -320, behavior: 'smooth' });
+              }}
+              className="absolute left-0 top-1/2 -translate-y-1/2 z-10 hidden group-hover/carousel:flex items-center justify-center transition-all duration-300"
+              style={{
+                height: 44,
+                width: 44,
+                borderRadius: '50%',
+                background: 'rgba(244,239,230,0.92)',
+                border: '1px solid rgba(42,37,32,0.1)',
+                boxShadow: '0 4px 16px rgba(20,17,15,0.1)',
+              }}
+              aria-label="Scroll left"
+            >
+              <ChevronLeft size={20} strokeWidth={1.4} color={INK} />
+            </button>
 
-                <div className="flex items-baseline justify-between mb-2 gap-4">
-                  <h3 className="font-serif" style={{ fontSize: '20px', color: INK, fontWeight: 400 }}>
-                    {item.title}
-                  </h3>
+            {/* Right Arrow */}
+            <button
+              onClick={() => {
+                const el = document.querySelector('.marquee-track');
+                if (el) el.scrollBy({ left: 320, behavior: 'smooth' });
+              }}
+              className="absolute right-0 top-1/2 -translate-y-1/2 z-10 hidden group-hover/carousel:flex items-center justify-center transition-all duration-300"
+              style={{
+                height: 44,
+                width: 44,
+                borderRadius: '50%',
+                background: 'rgba(244,239,230,0.92)',
+                border: '1px solid rgba(42,37,32,0.1)',
+                boxShadow: '0 4px 16px rgba(20,17,15,0.1)',
+              }}
+              aria-label="Scroll right"
+            >
+              <ChevronRight size={20} strokeWidth={1.4} color={INK} />
+            </button>
 
-                  <span style={{
-                fontSize: '13px',
-                color: SAGE_DARK,
-                letterSpacing: '0.05em'
-            }}>
-                    {item.price}
-                  </span>
-                </div>
+            <div className="overflow-hidden marquee-track" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
+              <div className="flex animate-marquee gap-8 group-hover/carousel:pause-marquee" style={{ width: 'max-content' }}>
+                {[...categories, ...categories].map((item, i) => (
+                  <div key={i} className="group cursor-pointer text-left flex-shrink-0" style={{ width: '300px' }}>
+                    <div className="relative overflow-hidden mb-7" style={{ aspectRatio: '3/4' }}>
+                      <ImageWithFallback src={item.image} alt={item.title} className="w-full h-full object-cover transition-transform duration-[1400ms] ease-out group-hover:scale-105"/>
+                    </div>
 
-                <p style={{
-                fontSize: '13px',
-                color: 'rgba(42,37,32,0.6)',
-                lineHeight: 1.7
-            }}>
-                  {item.desc}
-                </p>
-              </motion.div>))}
+                    <div className="flex items-baseline justify-between mb-2 gap-4">
+                      <h3 className="font-serif" style={{ fontSize: '20px', color: INK, fontWeight: 400 }}>
+                        {item.title}
+                      </h3>
+
+                      <span style={{
+                  fontSize: '13px',
+                  color: SAGE_DARK,
+                  letterSpacing: '0.05em'
+              }}>
+                        {item.price}
+                      </span>
+                    </div>
+
+                    <p style={{
+                  fontSize: '13px',
+                  color: 'rgba(42,37,32,0.6)',
+                  lineHeight: 1.7
+              }}>
+                      {item.desc}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            </div>
           </div>
+
+          <style>{`
+            @keyframes marquee {
+              0% { transform: translateX(0); }
+              100% { transform: translateX(-50%); }
+            }
+            .animate-marquee {
+              animation: marquee 30s linear infinite;
+            }
+            .group\\/carousel:hover .animate-marquee {
+              animation-play-state: paused;
+            }
+          `}</style>
         </div>
       </section>
 
@@ -218,7 +280,8 @@ export default function Home() {
               <div className="tracking-[0.42em] uppercase mb-6 text-left" style={{ fontSize: '11px', color: SAGE }}>— Philosophy</div>
               <h2 className="font-serif mb-12 text-left" style={{ fontSize: 'clamp(32px, 3.8vw, 50px)', lineHeight: 1.1, color: CREAM, fontWeight: 300 }}>
                 Real food.<br />
-                <em style={{ fontStyle: 'italic' }}>Real intention.</em>
+                <em style={{ fontStyle: 'italic' }}>Real Ingredients. <br/> Real Change.</em>
+                
               </h2>
               
               {/* PDF Copy Paragraph */}

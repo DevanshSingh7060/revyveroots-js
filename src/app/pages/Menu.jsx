@@ -58,6 +58,7 @@ export default function Menu() {
             backfaceVisibility: 'hidden',
             position: 'absolute',
             inset: 0,
+            willChange: 'transform',
         });
 
         pages.forEach((page, i) => {
@@ -72,13 +73,12 @@ export default function Menu() {
             scrollTrigger: {
                 trigger: containerRef.current,
                 start: 'top 72px',
-                end: `+=${window.innerHeight * 0.4 * spreads.length}`,
-                scrub: 0.8,
+                end: `+=${window.innerHeight * 0.85 * spreads.length}`,
+                scrub: 1.8,
                 pin: true,
                 anticipatePin: 1,
                 onUpdate: (self) => {
                     const newIndex = Math.round(self.progress * Math.max(0, spreads.length - 1));
-                    // Only trigger re-render when page actually changes
                     if (pageIndexRef.current !== newIndex) {
                         pageIndexRef.current = newIndex;
                         setPageIndex(newIndex);
@@ -92,7 +92,7 @@ export default function Menu() {
             tl.to(page, {
                 rotateY: -180,
                 duration: 1,
-                ease: 'power2.inOut',
+                ease: 'none',
             }, i);
         });
 
