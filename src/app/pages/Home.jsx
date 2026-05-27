@@ -106,9 +106,9 @@ export default function Home() {
             </div>
             
             {/* Main Heading */}
-            <h1 className="font-serif mb-10 text-left" style={{ fontSize: 'clamp(42px, 6.2vw, 84px)', lineHeight: 1.04, letterSpacing: '-0.012em', color: CREAM, fontWeight: 300 }}>
+            <h1 className="mb-10 text-left" style={{ fontFamily: "'Bodoni Moda', Georgia, serif", fontSize: 'clamp(32px, 4.5vw, 62px)', lineHeight: 1.04, letterSpacing: '-0.012em', color: CREAM, fontWeight: 700 }}>
               Welcome to<br />
-              <span style={{ fontStyle: 'normal', color: SAGE }}>Ryvive Roots</span>
+              <span style={{ fontFamily: "'Bodoni Moda', Georgia, serif", fontStyle: 'normal', color: SAGE, fontWeight: 700, fontSize: 'clamp(54px, 8vw, 108px)', textTransform: 'uppercase' }}>Ryvive Roots</span>
             </h1>
             
             {/* Subheading */}
