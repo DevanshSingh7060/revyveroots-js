@@ -32,7 +32,7 @@ import bg11OurPromises from '../images/story/11-our-promises.jpg';
    independent from the parallax backgrounds. */
 import ImageBreak from '../images/Landing-3.jpeg';
 import StoryHero from '../images/Story-1.JPG';
-import BagasseImg from '../images/Landing-4.jpeg';
+import BagasseImg from '../images/sustainable.png';
 const ease = [0.22, 1, 0.36, 1];
 const promises = [
     { icon: Sparkles, title: 'Pure Hygiene', desc: 'Zero-Compromise Cleanliness. Daily sanitization, strict food-safety checks, and spotless kitchens, your meals are prepared in an environment built on absolute trust.' },
@@ -258,14 +258,14 @@ export default function Story() {
             <div className="max-w-[1400px] mx-auto w-full">
               <motion.div initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: '-100px' }} transition={{ duration: 1.2, ease }} className="w-full">
                 <div className="grid lg:grid-cols-[56%_44%] gap-10 items-center">
-                  <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: '-100px' }} transition={{ duration: 1.1 }}>
-                    <h2 className="font-serif mb-6" style={{ fontSize: 'clamp(32px, 4vw, 48px)', color: CREAM, fontWeight: 300, textShadow: '0 2px 30px rgba(0,0,0,0.55)' }}>
+                  <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: '-100px' }} transition={{ duration: 1.1 }} className="relative rounded-sm p-8 lg:p-10" style={{ background: 'rgba(20,17,15,0.55)', backdropFilter: 'blur(14px)', WebkitBackdropFilter: 'blur(14px)', border: '1px solid rgba(244,239,230,0.08)', borderRadius: '4px' }}>
+                    <h2 className="font-serif mb-6" style={{ fontSize: 'clamp(32px, 4vw, 48px)', color: CREAM, fontWeight: 300 }}>
                       What is <em style={{ fontStyle: 'italic', color: '#C4CFB0' }}>Ryvive Roots?</em>
                     </h2>
-                    <p className="mb-5" style={{ fontSize: 'clamp(15px, 1.8vw, 17px)', color: 'rgba(244,239,230,0.88)', lineHeight: 1.8, textShadow: '0 1px 16px rgba(0,0,0,0.55)' }}>
+                    <p className="mb-5" style={{ fontSize: 'clamp(15px, 1.8vw, 17px)', color: 'rgba(244,239,230,0.92)', lineHeight: 1.8 }}>
                       Ryvive Roots is an invitation to return to what is pure, grounded, and real. Born from a respect for nature and the body&rsquo;s innate wisdom, every dish is prepared from scratch using clean, carefully chosen ingredients that nourish without excess and restore without force.
                     </p>
-                    <p style={{ fontSize: 'clamp(15px, 1.8vw, 17px)', color: 'rgba(244,239,230,0.88)', lineHeight: 1.8, textShadow: '0 1px 16px rgba(0,0,0,0.55)' }}>
+                    <p style={{ fontSize: 'clamp(15px, 1.8vw, 17px)', color: 'rgba(244,239,230,0.92)', lineHeight: 1.8 }}>
                       Free from artificial flavours, preservatives, and shortcuts, our food is designed to move in harmony with your natural rhythm—awakening energy, sustaining balance, and leaving you feeling light, clear, and renewed. We don&apos;t chase trends or promise quick fixes; we offer thoughtful nourishment, crafted with care, meant to support a refined way of living where wellness feels effortless and enduring.
                     </p>
                   </motion.div>
