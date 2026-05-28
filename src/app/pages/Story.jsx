@@ -180,40 +180,40 @@ export default function Story() {
 
               <div className="grid md:grid-cols-3 gap-8 lg:gap-12">
                 {/* Vision Card */}
-                <motion.div initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: '-100px' }} transition={{ duration: 0.8, delay: 0, ease }} className="flex flex-col text-center">
+                <motion.div initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: '-100px' }} transition={{ duration: 0.8, delay: 0, ease }} className="flex flex-col text-center p-7 lg:p-9 rounded-sm" style={{ background: 'rgba(20,17,15,0.55)', backdropFilter: 'blur(14px)', WebkitBackdropFilter: 'blur(14px)', border: '1px solid rgba(244,239,230,0.08)', borderRadius: '4px' }}>
                   <div className="mb-6 w-16 h-16 mx-auto flex items-center justify-center rounded-full border transition-transform duration-700 hover:scale-110" style={{ borderColor: 'rgba(244,239,230,0.25)' }}>
                     <Eye size={26} strokeWidth={1.2} color="#C4CFB0"/>
                   </div>
-                  <h3 className="font-serif mb-4" style={{ fontSize: 'clamp(20px, 2.4vw, 26px)', color: CREAM, fontWeight: 300, textShadow: '0 1px 16px rgba(0,0,0,0.55)' }}>
+                  <h3 className="font-serif mb-4" style={{ fontSize: 'clamp(20px, 2.4vw, 26px)', color: CREAM, fontWeight: 300 }}>
                     Vision
                   </h3>
-                  <p style={{ fontSize: 'clamp(14px, 1.7vw, 16px)', color: 'rgba(244,239,230,0.85)', lineHeight: 1.7, textShadow: '0 1px 16px rgba(0,0,0,0.55)' }}>
+                  <p style={{ fontSize: 'clamp(14px, 1.7vw, 16px)', color: 'rgba(244,239,230,0.92)', lineHeight: 1.7 }}>
                     We believe health should be simple, effortless, and a natural part of daily life. Our aim is to make wholesome, balanced eating accessible so people can feel lighter, clearer, and more in tune with themselves.
                   </p>
                 </motion.div>
 
                 {/* Mission Card */}
-                <motion.div initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: '-100px' }} transition={{ duration: 0.8, delay: 0.1, ease }} className="flex flex-col text-center">
+                <motion.div initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: '-100px' }} transition={{ duration: 0.8, delay: 0.1, ease }} className="flex flex-col text-center p-7 lg:p-9 rounded-sm" style={{ background: 'rgba(20,17,15,0.55)', backdropFilter: 'blur(14px)', WebkitBackdropFilter: 'blur(14px)', border: '1px solid rgba(244,239,230,0.08)', borderRadius: '4px' }}>
                   <div className="mb-6 w-16 h-16 mx-auto flex items-center justify-center rounded-full border transition-transform duration-700 hover:scale-110" style={{ borderColor: 'rgba(244,239,230,0.25)' }}>
                     <Target size={26} strokeWidth={1.2} color="#C4CFB0"/>
                   </div>
-                  <h3 className="font-serif mb-4" style={{ fontSize: 'clamp(20px, 2.4vw, 26px)', color: CREAM, fontWeight: 300, textShadow: '0 1px 16px rgba(0,0,0,0.55)' }}>
+                  <h3 className="font-serif mb-4" style={{ fontSize: 'clamp(20px, 2.4vw, 26px)', color: CREAM, fontWeight: 300 }}>
                     Mission
                   </h3>
-                  <p style={{ fontSize: 'clamp(14px, 1.7vw, 16px)', color: 'rgba(244,239,230,0.85)', lineHeight: 1.7, textShadow: '0 1px 16px rgba(0,0,0,0.55)' }}>
+                  <p style={{ fontSize: 'clamp(14px, 1.7vw, 16px)', color: 'rgba(244,239,230,0.92)', lineHeight: 1.7 }}>
                     To make healthy eating easy, enjoyable, and accessible for all through mindful preparation, quality ingredients, and balanced nutrition.
                   </p>
                 </motion.div>
 
                 {/* Values Card */}
-                <motion.div initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: '-100px' }} transition={{ duration: 0.8, delay: 0.2, ease }} className="flex flex-col text-center">
+                <motion.div initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: '-100px' }} transition={{ duration: 0.8, delay: 0.2, ease }} className="flex flex-col text-center p-7 lg:p-9 rounded-sm" style={{ background: 'rgba(20,17,15,0.55)', backdropFilter: 'blur(14px)', WebkitBackdropFilter: 'blur(14px)', border: '1px solid rgba(244,239,230,0.08)', borderRadius: '4px' }}>
                   <div className="mb-6 w-16 h-16 mx-auto flex items-center justify-center rounded-full border transition-transform duration-700 hover:scale-110" style={{ borderColor: 'rgba(244,239,230,0.25)' }}>
                     <Diamond size={26} strokeWidth={1.2} color="#C4CFB0"/>
                   </div>
-                  <h3 className="font-serif mb-4" style={{ fontSize: 'clamp(20px, 2.4vw, 26px)', color: CREAM, fontWeight: 300, textShadow: '0 1px 16px rgba(0,0,0,0.55)' }}>
+                  <h3 className="font-serif mb-4" style={{ fontSize: 'clamp(20px, 2.4vw, 26px)', color: CREAM, fontWeight: 300 }}>
                     Values
                   </h3>
-                  <p style={{ fontSize: 'clamp(14px, 1.7vw, 16px)', color: 'rgba(244,239,230,0.85)', lineHeight: 1.7, textShadow: '0 1px 16px rgba(0,0,0,0.55)' }}>
+                  <p style={{ fontSize: 'clamp(14px, 1.7vw, 16px)', color: 'rgba(244,239,230,0.92)', lineHeight: 1.7 }}>
                     We strive to redefine healthy eating across India by making nutritious, sustainable, wholesome food easy for everyone. We aim to create a future where good health is a lifestyle, not a privilege.
                   </p>
                 </motion.div>
