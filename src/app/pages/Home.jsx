@@ -60,12 +60,12 @@ const testimonials = [
 ];
 // 4 Categories Data mapped to original card visuals
 const categories = [
-    { title: "Bowls", desc: "Macro-balanced energy reserves utilizing plant clean protein", price: "Clean Protein", image: sandwich },
-    { title: "Salads", desc: "Organic garden beds with microgreens & house seed toppings", price: "House Bowls", image: salad },
-    { title: "Wraps", desc: "Antioxidant wheat rolls with crisp fresh vegetables", price: "Fresh Rolls", image: wrap },
-    { title: "Cold-Pressed Juices", desc: "Cold-pressed elixirs & premium functional wellness shots", price: "Elixirs", image: soup },
-    { title: "Pasta", desc: "Cold-pressed elixirs & premium functional wellness shots", price: "Elixirs", image: pasta },
-    { title: "Shakes", desc: "Cold-pressed elixirs & premium functional wellness shots", price: "Elixirs", image: heroImage }
+    { title: "Healthy Sandwich", desc: "Packed with proteins and fresh veggies, perfect for clean eating and daily nourishment.", price: "Clean Protein", image: sandwich },
+    { title: "Healthy Salads", desc: "A refreshing mix of greens crafted for pure balance. Light, nutritious, and made to keep you feeling fresh.", price: "House Bowls", image: salad },
+    { title: "Healthy Wraps", desc: "Packed with proteins and fresh veggies, perfect for clean eating and daily nourishment.", price: "Fresh Rolls", image: wrap },
+    { title: "Healthy Soup", desc: "Packed with proteins and fresh veggies, perfect for clean eating and daily nourishment.", price: "Elixirs", image: soup },
+    { title: "Healthy Pasta", desc: "Comfort food with a clean, healthy twist. Flavorful, satisfying, and perfect for every craving.", price: "Elixirs", image: pasta },
+    { title: "Healthy Juices", desc: "Wholesome blends made from the freshest ingredients. A natural boost to energize your day, one sip at a time.", price: "Elixirs", image: heroImage }
 ];
 export default function Home() {
     // Testimonial sliding state
