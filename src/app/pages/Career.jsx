@@ -35,6 +35,7 @@ const labelStyle = {
     textTransform: 'uppercase',
     color: SAGE_DARK,
     marginBottom: '6px',
+    fontWeight: 600,
 };
 function FieldWrapper({ children }) {
     return (<div style={{ position: 'relative' }} onFocusCapture={(e) => {
@@ -102,17 +103,18 @@ export default function Career() {
           <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1.1, ease }} className="flex flex-col items-center gap-6">
             {/* Eyebrow */}
             <div className="inline-flex items-center gap-3 px-5 py-2 rounded-sm" style={{
-            border: `1px solid rgba(139,149,121,0.55)`,
+            border: `1px solid ${CREAM}`,
             fontSize: '10px',
             letterSpacing: '0.44em',
             textTransform: 'uppercase',
-            color: SAGE,
+            color: CREAM,
+            fontWeight: 600,
         }}>
               <span style={{
             width: '5px',
             height: '5px',
             borderRadius: '50%',
-            background: SAGE,
+            background: CREAM,
             display: 'inline-block',
         }}/>
               Join Our Journey
@@ -158,7 +160,7 @@ export default function Career() {
       {/* ── INTRO BAND ──────────────────────────────────── */}
       <section data-tone="light" className="py-20 lg:py-28 text-center px-6" style={{ background: CREAM_2 }}>
         <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.9, ease }} className="max-w-[700px] mx-auto">
-          <div className="tracking-[0.42em] uppercase mb-7" style={{ fontSize: '10px', color: SAGE_DARK }}>
+          <div className="tracking-[0.42em] uppercase mb-7" style={{ fontSize: '10px', color: SAGE_DARK, fontWeight: 600 }}>
             — Careers at Ryvive Roots
           </div>
           <h2 className="font-serif mb-7" style={{
@@ -188,7 +190,7 @@ export default function Career() {
         <div className="max-w-[860px] mx-auto">
           {/* Section heading */}
           <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.8, ease }} className="text-center mb-16 lg:mb-20">
-            <div className="tracking-[0.42em] uppercase mb-6" style={{ fontSize: '10px', color: SAGE_DARK }}>
+            <div className="tracking-[0.42em] uppercase mb-6" style={{ fontSize: '10px', color: SAGE_DARK, fontWeight: 600 }}>
               — Open Application
             </div>
             <h2 className="font-serif mb-5" style={{

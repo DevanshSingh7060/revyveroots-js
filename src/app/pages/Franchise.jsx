@@ -39,6 +39,7 @@ export default function Franchise() {
         letterSpacing: '0.32em',
         textTransform: 'uppercase',
         color: SAGE_DARK,
+        fontWeight: 600,
     };
     return (<>
       {/* HERO — DARK */}
@@ -50,8 +51,8 @@ export default function Franchise() {
 
         <div className="relative z-10 max-w-[1400px] mx-auto px-8 lg:px-14 w-full pt-32 pb-20">
           <motion.div initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1 }} className="text-center max-w-3xl mx-auto">
-            <div className="inline-flex items-center gap-3 px-4 py-1.5 mb-10 rounded-sm" style={{ border: `1px solid ${SAGE}`, fontSize: '10px', letterSpacing: '0.42em', textTransform: 'uppercase', color: SAGE }}>
-              <span style={{ width: '6px', height: '6px', borderRadius: '50%', background: SAGE, display: 'inline-block' }}/>
+            <div className="inline-flex items-center gap-3 px-4 py-1.5 mb-10 rounded-sm" style={{ border: `1px solid ${CREAM}`, fontSize: '10px', letterSpacing: '0.42em', textTransform: 'uppercase', color: CREAM, fontWeight: 600 }}>
+              <span style={{ width: '6px', height: '6px', borderRadius: '50%', background: CREAM, display: 'inline-block' }}/>
               Coming Soon
             </div>
             <h1 className="font-serif mb-10" style={{ fontSize: 'clamp(46px, 7vw, 92px)', lineHeight: 1.02, letterSpacing: '-0.015em', color: CREAM, fontWeight: 300 }}>
@@ -69,7 +70,7 @@ export default function Franchise() {
       <section data-tone="light" className="py-28 lg:py-36" style={{ background: CREAM }}>
         <div className="max-w-[1300px] mx-auto px-8 lg:px-14">
           <div className="text-center mb-20">
-            <div className="tracking-[0.42em] uppercase mb-6" style={{ fontSize: '11px', color: SAGE_DARK }}>— The Partnership</div>
+            <div className="tracking-[0.42em] uppercase mb-6" style={{ fontSize: '11px', color: SAGE_DARK, fontWeight: 600 }}>— The Partnership</div>
             <h2 className="font-serif" style={{ fontSize: 'clamp(32px, 4vw, 54px)', lineHeight: 1.1, color: INK, fontWeight: 300 }}>
               Why partner <em style={{ fontStyle: 'italic' }}>with us.</em>
             </h2>
@@ -92,7 +93,7 @@ export default function Franchise() {
         <div className="max-w-[1300px] mx-auto px-8 lg:px-14">
           <div className="grid lg:grid-cols-2 gap-16 lg:gap-24 items-center">
             <motion.div initial={{ opacity: 0, x: -40 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}>
-              <div className="tracking-[0.42em] uppercase mb-6" style={{ fontSize: '11px', color: SAGE }}>— Investment</div>
+              <div className="tracking-[0.42em] uppercase mb-6" style={{ fontSize: '11px', color: CREAM, fontWeight: 600 }}>— Investment</div>
               <h2 className="font-serif mb-8" style={{ fontSize: 'clamp(30px, 3.6vw, 48px)', lineHeight: 1.1, color: CREAM, fontWeight: 300 }}>
                 A transparent <em style={{ fontStyle: 'italic', color: SAGE }}>commitment.</em>
               </h2>
@@ -104,7 +105,7 @@ export default function Franchise() {
             <motion.div initial={{ opacity: 0, x: 40 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}>
               <div className="grid grid-cols-2 gap-px" style={{ background: 'rgba(244,239,230,0.12)' }}>
                 {details.map((d) => (<div key={d.label} className="p-8" style={{ background: DARK }}>
-                    <div className="tracking-[0.3em] uppercase mb-4" style={{ fontSize: '10px', color: SAGE }}>{d.label}</div>
+                    <div className="tracking-[0.3em] uppercase mb-4" style={{ fontSize: '10px', color: CREAM, fontWeight: 600 }}>{d.label}</div>
                     <div className="font-serif" style={{ fontSize: '26px', color: CREAM, fontWeight: 300 }}>{d.value}</div>
                   </div>))}
               </div>
@@ -117,7 +118,7 @@ export default function Franchise() {
       <section data-tone="light" className="py-28 lg:py-36" style={{ background: CREAM_2 }}>
         <div className="max-w-[1000px] mx-auto px-8 lg:px-14 text-center">
           <motion.div initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.9 }}>
-            <div className="tracking-[0.42em] uppercase mb-6" style={{ fontSize: '11px', color: SAGE_DARK }}>— Our Vision</div>
+            <div className="tracking-[0.42em] uppercase mb-6" style={{ fontSize: '11px', color: SAGE_DARK, fontWeight: 600 }}>— Our Vision</div>
             <h2 className="font-serif mb-10" style={{ fontSize: 'clamp(30px, 3.6vw, 48px)', lineHeight: 1.15, color: INK, fontWeight: 300 }}>
               A quiet network of <em style={{ fontStyle: 'italic' }}>thoughtful tables</em> —<br />
               built slowly, the only way worth building.
@@ -133,7 +134,7 @@ export default function Franchise() {
       <section data-tone="light" className="py-28 lg:py-36" style={{ background: CREAM }}>
         <div className="max-w-[820px] mx-auto px-8 lg:px-14">
           <div className="text-center mb-16">
-            <div className="tracking-[0.42em] uppercase mb-6" style={{ fontSize: '11px', color: SAGE_DARK }}>— Express Interest</div>
+            <div className="tracking-[0.42em] uppercase mb-6" style={{ fontSize: '11px', color: SAGE_DARK, fontWeight: 600 }}>— Express Interest</div>
             <h2 className="font-serif mb-6" style={{ fontSize: 'clamp(30px, 3.6vw, 46px)', lineHeight: 1.1, color: INK, fontWeight: 300 }}>
               Begin a <em style={{ fontStyle: 'italic' }}>conversation.</em>
             </h2>

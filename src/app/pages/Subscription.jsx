@@ -144,6 +144,7 @@ export default function Subscription() {
     eveningSlot: ''
   });
   const [agreed, setAgreed] = useState(false);
+  const [termsAgreed, setTermsAgreed] = useState(false);
   const current = plans.find((p) => p.key === selectedPlan);
   const currentDuration = durations[selectedPlan] ?? 1;
   const currentPrice = current.prices[currentDuration];
@@ -165,7 +166,7 @@ export default function Subscription() {
       }
     }, 100);
   };
-  const isContinueDisabled = (step === 5 && !agreed) || (step === 3 && !delivery.morningSlot && !delivery.eveningSlot);
+  const isContinueDisabled = (step === 4 && !termsAgreed) || (step === 5 && !agreed) || (step === 3 && !delivery.morningSlot && !delivery.eveningSlot);
   return (<div style={{ background: CREAM }} className="min-h-screen">
     {/* HERO — DARK with overlay image */}
     <section className="relative min-h-[68vh] flex items-center overflow-hidden" style={{ background: DARK }}>
@@ -211,7 +212,7 @@ export default function Subscription() {
             borderBottom: '1px solid rgba(42,37,32,0.08)',
             borderRadius: window.innerWidth >= 1024 ? '2px' : '18px',
           }}>
-            <div className="tracking-[0.42em] uppercase mb-8" style={{ fontSize: '10px', color: SAGE_DARK }}>— Your Journey</div>
+            <div className="tracking-[0.42em] uppercase mb-8" style={{ fontSize: '10px', color: SAGE_DARK, fontWeight: 600 }}>— Your Journey</div>
             <ol className="flex items-center justify-between lg:block lg:space-y-7">
               {steps.map((s) => {
                 const isDone = step > s.n;
@@ -270,7 +271,7 @@ export default function Subscription() {
               {step === 1 && <PlanStep selectedPlan={selectedPlan} setSelectedPlan={setSelectedPlan} durations={durations} setDurations={setDurations} onContinue={nextStepAndScroll} />}
               {step === 2 && <InfoStep info={info} setInfo={setInfo} />}
               {step === 3 && <DeliveryStep delivery={delivery} setDelivery={setDelivery} />}
-              {step === 4 && <ReviewStep plan={current} durationMonths={currentDuration} info={info} delivery={delivery} />}
+              {step === 4 && <ReviewStep plan={current} durationMonths={currentDuration} info={info} delivery={delivery} termsAgreed={termsAgreed} setTermsAgreed={setTermsAgreed} />}
               {step === 5 && <PaymentStep plan={current} durationMonths={currentDuration} agreed={agreed} setAgreed={setAgreed} />}
             </motion.div>
           </AnimatePresence>
@@ -799,7 +800,7 @@ const reviewPlanDetails = {
   }
 };
 /* — Step 4 — */
-function ReviewStep({ plan, durationMonths, info, delivery }) {
+function ReviewStep({ plan, durationMonths, info, delivery, termsAgreed, setTermsAgreed }) {
   const Row = ({ label, value }) => (value ? <div className="flex items-baseline justify-between py-4 gap-4" style={{ borderBottom: '1px solid rgba(42,37,32,0.1)' }}>
     <div className="tracking-[0.22em] uppercase flex-shrink-0" style={{ fontSize: '10px', color: SAGE_DARK }}>{label}</div>
     <div className="text-right" style={{ fontSize: '13px', color: INK }}>{value}</div>
@@ -808,29 +809,61 @@ function ReviewStep({ plan, durationMonths, info, delivery }) {
   const address = [delivery.house, delivery.street, delivery.landmark, delivery.pincode].filter(Boolean).join(', ');
   const details = reviewPlanDetails[plan.key];
   const price = plan.prices[durationMonths];
-  return (<div>
-    <h2 className="font-serif mb-3" style={{ fontSize: 'clamp(28px, 3.4vw, 40px)', color: INK, fontWeight: 300, lineHeight: 1.1 }}>
-      Order <em style={{ fontStyle: 'italic' }}>Summary.</em>
-    </h2>
-    <p className="mb-10" style={{ fontSize: '14px', color: 'rgba(42,37,32,0.65)', lineHeight: 1.8 }}>
-      A final glance before we begin your journey.
-    </p>
+  return (<div className="flex flex-col gap-8">
+    <div>
+      <h2 className="font-serif mb-3" style={{ fontSize: 'clamp(28px, 3.4vw, 40px)', color: INK, fontWeight: 300, lineHeight: 1.1 }}>
+        Order <em style={{ fontStyle: 'italic' }}>Summary.</em>
+      </h2>
+      <p style={{ fontSize: '14px', color: 'rgba(42,37,32,0.65)', lineHeight: 1.8 }}>
+        A final glance before we begin your journey.
+      </p>
+    </div>
 
-    {/* DETAILED PLAN SUMMARY */}
-    <div className="p-7 lg:p-10 mb-8 flex flex-col gap-8" style={{ background: CREAM_2, borderRadius: '2px', border: '1px solid rgba(42,37,32,0.08)' }}>
-      <div>
-        <div className="tracking-[0.32em] uppercase mb-5" style={{ fontSize: '10px', color: SAGE_DARK }}>Your Selected Plan</div>
-        <div className="font-serif mb-2" style={{ fontSize: 'clamp(32px, 4vw, 44px)', fontWeight: 300, color: INK, letterSpacing: '0.01em' }}>
-          {details.name}
-        </div>
-        <div style={{ fontSize: '15px', color: SAGE_DARK, fontStyle: 'italic', marginBottom: '16px' }}>
-          {details.tagline}
-        </div>
-        <p style={{ fontSize: '15px', color: 'rgba(42,37,32,0.7)', lineHeight: 1.85, maxWidth: '640px' }}>
-          {details.desc}
-        </p>
+    {/* DETAILED PLAN SUMMARY & USER DETAILS SIDE-BY-SIDE */}
+    <div className="grid grid-cols-1 md:grid-cols-[55fr_45fr] lg:grid-cols-[1.2fr_0.8fr] gap-6 lg:gap-8 items-stretch">
+      {/* LEFT COLUMN: DETAILED PLAN SUMMARY */}
+      <div className="p-7 lg:p-10 flex flex-col justify-between h-full text-left" style={{ background: CREAM_2, borderRadius: '2px', border: '1px solid rgba(42,37,32,0.08)' }}>
+        <div className="flex flex-col gap-6">
+          <div>
+            <div className="tracking-[0.32em] uppercase mb-4" style={{ fontSize: '10px', color: SAGE_DARK }}>Your Selected Plan</div>
+            <div className="font-serif mb-2" style={{ fontSize: 'clamp(32px, 3.8vw, 44px)', fontWeight: 300, color: INK, letterSpacing: '0.01em', lineHeight: 1.15 }}>
+              {details.name}
+            </div>
+            <div className="mb-4" style={{ fontSize: '15px', color: SAGE_DARK, fontStyle: 'italic' }}>
+              {details.tagline}
+            </div>
+            <p style={{ fontSize: '14px', color: 'rgba(42,37,32,0.7)', lineHeight: 1.8 }}>
+              {details.desc}
+            </p>
+          </div>
 
-        <div className="flex items-baseline gap-2 mt-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 pt-6" style={{ borderTop: '1px solid rgba(42,37,32,0.08)' }}>
+            <div>
+              <div className="tracking-[0.28em] uppercase mb-4" style={{ fontSize: '10px', color: SAGE_DARK }}>
+                What’s Included
+              </div>
+              <ul className="space-y-2.5">
+                {features[plan.key.toUpperCase()][durationMonths].map((f, i) => (<li key={i} className="flex items-start gap-3.5" style={{ fontSize: '13px', color: 'rgba(42,37,32,0.85)', lineHeight: 1.55 }}>
+                  <span style={{ color: SAGE_DARK, flexShrink: 0, marginTop: '6px', width: '4px', height: '4px', borderRadius: '50%', background: 'currentColor' }} />
+                  {f}
+                </li>))}
+              </ul>
+            </div>
+            <div>
+              <div className="tracking-[0.28em] uppercase mb-4" style={{ fontSize: '10px', color: SAGE_DARK }}>
+                Categories Covered
+              </div>
+              <ul className="space-y-2.5">
+                {details.categories.map((c, i) => (<li key={i} className="flex items-start gap-3.5" style={{ fontSize: '13px', color: 'rgba(42,37,32,0.85)', lineHeight: 1.55 }}>
+                  <span style={{ color: SAGE_DARK, flexShrink: 0, marginTop: '6px', width: '4px', height: '4px', borderRadius: '50%', background: 'currentColor' }} />
+                  {c}
+                </li>))}
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div className="flex items-baseline gap-2 mt-8 pt-6" style={{ borderTop: '1px solid rgba(42,37,32,0.08)' }}>
           <span style={{ fontSize: '14px', opacity: 0.55 }}>₹</span>
           <span className="font-serif" style={{ fontSize: '32px', fontWeight: 300, color: INK, letterSpacing: '-0.02em', lineHeight: 1 }}>
             {price.toLocaleString('en-IN')}
@@ -841,51 +874,174 @@ function ReviewStep({ plan, durationMonths, info, delivery }) {
         </div>
       </div>
 
-      <div className="grid md:grid-cols-2 gap-8 md:gap-12 pt-8" style={{ borderTop: '1px solid rgba(42,37,32,0.08)' }}>
-        <div>
-          <div className="tracking-[0.28em] uppercase mb-5" style={{ fontSize: '10px', color: SAGE_DARK }}>
-            What’s Included
+      {/* RIGHT COLUMN: USER DETAILS & TOTAL */}
+      <div className="p-7 lg:p-10 flex flex-col justify-between h-full text-left" style={{ background: CREAM_2, borderRadius: '2px', border: '1px solid rgba(42,37,32,0.08)' }}>
+        <div className="flex flex-col gap-6">
+          <div>
+            <h3 className="tracking-[0.32em] uppercase mb-4" style={{ fontSize: '10px', color: SAGE_DARK }}>Personal Information</h3>
+            <Row label="Name" value={fullName || '—'} />
+            <Row label="Contact Number" value={info.phone || '—'} />
+            <Row label="Email ID" value={info.email || '—'} />
+            <Row label="DOB" value={info.dob || '—'} />
+            {(info.allergies || info.conditions) && (
+              <Row label="Health Info" value={[info.allergies ? `Allergies: ${info.allergies}` : null, info.conditions ? `Conditions: ${info.conditions}` : null].filter(Boolean).join(' | ')} />
+            )}
           </div>
-          <ul className="space-y-3">
-            {features[plan.key.toUpperCase()][durationMonths].map((f, i) => (<li key={i} className="flex items-start gap-4" style={{ fontSize: '14px', color: 'rgba(42,37,32,0.85)', lineHeight: 1.6 }}>
-              <span style={{ color: SAGE_DARK, flexShrink: 0, marginTop: '7px', width: '4px', height: '4px', borderRadius: '50%', background: 'currentColor' }} />
-              {f}
-            </li>))}
-          </ul>
+
+          <div>
+            <h3 className="tracking-[0.32em] uppercase mb-4" style={{ fontSize: '10px', color: SAGE_DARK }}>Delivery Information</h3>
+            <Row label="Address" value={address || '—'} />
+            <Row label="Morning Delivery Slot" value={delivery.morningSlot || '—'} />
+            <Row label="Evening Delivery Slot" value={delivery.eveningSlot || '—'} />
+          </div>
         </div>
-        <div>
-          <div className="tracking-[0.28em] uppercase mb-5" style={{ fontSize: '10px', color: SAGE_DARK }}>
-            Categories Covered
+
+        <div className="flex items-baseline justify-between pt-6 mt-8" style={{ borderTop: '1px solid rgba(42,37,32,0.08)' }}>
+          <div className="tracking-[0.32em] uppercase" style={{ fontSize: '11px', color: INK }}>Total Amount</div>
+          <div className="font-serif" style={{ fontSize: '34px', color: INK, fontWeight: 300 }}>
+            ₹{price.toLocaleString('en-IN')}
           </div>
-          <ul className="space-y-3">
-            {details.categories.map((c, i) => (<li key={i} className="flex items-start gap-4" style={{ fontSize: '14px', color: 'rgba(42,37,32,0.85)', lineHeight: 1.6 }}>
-              <span style={{ color: SAGE_DARK, flexShrink: 0, marginTop: '7px', width: '4px', height: '4px', borderRadius: '50%', background: 'currentColor' }} />
-              {c}
-            </li>))}
-          </ul>
         </div>
       </div>
     </div>
 
-    {/* USER DETAILS */}
-    <div className="p-7 lg:p-9 mb-8" style={{ background: CREAM_2, borderRadius: '2px', border: '1px solid rgba(42,37,32,0.08)' }}>
-      <h3 className="tracking-[0.32em] uppercase mt-8 mb-4" style={{ fontSize: '10px', color: SAGE_DARK }}>Personal Information</h3>
-      <Row label="Name" value={fullName || '—'} />
-      <Row label="Contact" value={info.phone || info.email ? `${info.phone} | ${info.email}` : '—'} />
-      <Row label="DOB" value={info.dob || '—'} />
-      {(info.allergies || info.conditions) && (<Row label="Health Info" value={[info.allergies ? `Allergies: ${info.allergies}` : null, info.conditions ? `Conditions: ${info.conditions}` : null].filter(Boolean).join(' | ')} />)}
+    {/* FULL-WIDTH TERMS & CONDITIONS */}
+    <div className="p-7 lg:p-10 text-left" style={{ background: CREAM_2, borderRadius: '2px', border: '1px solid rgba(42,37,32,0.08)' }}>
+      <h3 className="tracking-[0.32em] uppercase mb-4" style={{ fontSize: '10px', color: SAGE_DARK }}>Terms & Conditions</h3>
+      <div className="overflow-y-auto pr-2 mb-6 text-left" style={{ maxHeight: '180px', fontSize: '13px', color: 'rgba(42,37,32,0.7)', lineHeight: 1.7, borderBottom: '1px solid rgba(42,37,32,0.08)', paddingBottom: '16px' }}>
+        <p className="mb-4 font-semibold">1. Privacy Policy</p>
+        <p className="mb-4">
+          RYVIVE ROOTS is committed to protecting customer privacy. We collect personal information including name, contact details, delivery address, date of birth, disclosed allergies or medical conditions, subscription preferences, and order history solely for service fulfilment and communication purposes. Payments are securely processed through Easebuzz, and RYVIVE ROOTS does not store any banking or card details. Customer data is shared only with essential service partners or when required by applicable law.
+        </p>
 
-      <h3 className="tracking-[0.32em] uppercase mt-8 mb-4" style={{ fontSize: '10px', color: SAGE_DARK }}>Delivery Information</h3>
-      <Row label="Address" value={address || '—'} />
-      <Row label="Morning Slot" value={delivery.morningSlot || '—'} />
-      <Row label="Evening Slot" value={delivery.eveningSlot || '—'} />
+        <p className="mb-4 font-semibold">2. Services Offered</p>
+        <p className="mb-4">
+          RYVIVE ROOTS provides healthy food and beverage options, including soups, salads, sandwiches, wraps, chaat, pasta, and fresh juices, through one-time orders and subscription-based services.
+        </p>
 
-      <div className="flex items-baseline justify-between pt-6 mt-2">
-        <div className="tracking-[0.32em] uppercase" style={{ fontSize: '11px', color: INK }}>Total / Month</div>
-        <div className="font-serif" style={{ fontSize: '34px', color: INK, fontWeight: 300 }}>
-          ₹{price.toLocaleString('en-IN')}
-        </div>
+        <p className="mb-4 font-semibold">3. Subscription Plans</p>
+        <p className="mb-4">
+          Subscriptions are billed monthly in advance and are non-transferable. Once activated, subscriptions are non-cancellable except in cases where service is unavailable from RYVIVE ROOTS. Subscriptions are valid only for the registered customer and the registered delivery address. Missed deliveries due to customer unavailability or incorrect details are not eligible for compensation, refunds, or replacements.
+        </p>
+
+        <p className="mb-4 font-semibold">4. Pricing & Payments</p>
+        <p className="mb-4">
+          All prices are listed in INR and are inclusive of applicable taxes unless stated otherwise. Payments are processed securely via Easebuzz. Failed, delayed, or unsuccessful payments may result in temporary suspension or cancellation of services.
+        </p>
+
+        <p className="mb-4 font-semibold">5. Offers & Benefits</p>
+        <p className="mb-4">
+          Offers and benefits may vary by city, location, and participating partners and are subject to specific terms, validity periods, and availability.
+        </p>
+        <p className="mb-2">Offers are:</p>
+        <ul className="list-disc pl-5 mb-4 space-y-1">
+          <li>Available only on RYVIVE ROOTS platforms</li>
+          <li>Non-transferable and non-cashable</li>
+          <li>Not combinable with other promotions</li>
+          <li>Subject to modification or withdrawal without prior notice</li>
+          <li>Valid only for eligible subscribed users and selected locations</li>
+        </ul>
+
+        <p className="mb-4 font-semibold">6. User Responsibilities</p>
+        <p className="mb-4">
+          Customers agree to provide accurate and complete information, ensure availability at the delivery location, disclose any allergies or medical conditions in advance, follow food storage and consumption guidelines, and use the services lawfully and respectfully.
+        </p>
+
+        <p className="mb-4 font-semibold">7. Prohibited Uses</p>
+        <p className="mb-2">Users shall not use RYVIVE ROOTS services for:</p>
+        <ul className="list-disc pl-5 mb-2 space-y-1">
+          <li>Any unlawful or fraudulent purpose</li>
+          <li>Reselling or redistributing meals or subscriptions</li>
+          <li>Providing false information or impersonation</li>
+          <li>Interfering with service operations</li>
+          <li>Violating applicable laws or regulations</li>
+        </ul>
+        <p className="mb-4">
+          Violation of these terms may result in immediate suspension or termination of services without refund.
+        </p>
+
+        <p className="mb-4 font-semibold">8. Pause / Hold Policy</p>
+        <p className="mb-4">
+          Subscriptions may be paused up to two (2) times per month for the Gold plan and up to three (3) times per month for the Platinum plan. Each pause may be taken for a minimum of one (1) day and a maximum of fifteen (15) days. Pause requests must be submitted at least one (1) day in advance, no later than 5:00 PM on the previous day. Same-day pause requests are not permitted. All paused days will be adjusted at the end of the subscription period, and no refunds will be provided for paused days.
+        </p>
+
+        <p className="mb-4 font-semibold">9. Food Safety & Health Disclaimer</p>
+        <p className="mb-4">
+          Food is prepared following standard hygiene and safety practices; however, allergen-free meals cannot be guaranteed. RYVIVE ROOTS shall not be liable for adverse reactions resulting from undisclosed allergies or medical conditions. Meals are not intended to diagnose, treat, cure, or prevent any medical condition.
+        </p>
+
+        <p className="mb-4 font-semibold">10. Natural Food Variation Disclaimer</p>
+        <p className="mb-4">
+          Due to the use of fresh and natural ingredients, variations in taste, texture, portion size, and appearance may occur and shall not qualify for refunds or replacements.
+        </p>
+
+        <p className="mb-4 font-semibold">11. Complaint & Feedback Policy</p>
+        <p className="mb-4">
+          Complaints related to food quality, packaging, or delivery must be reported within twenty-four (24) hours of delivery. Complaints raised after this period may not be considered. RYVIVE ROOTS reserves the right to verify all complaints.
+        </p>
+
+        <p className="mb-4 font-semibold">12. Operational & Communication Policy</p>
+        <p className="mb-4">
+          RYVIVE ROOTS may assign delivery personnel, coordinators, or service partners as required. All subscription-related communication must be conducted through official RYVIVE ROOTS communication channels only.
+        </p>
+
+        <p className="mb-4 font-semibold">13. Service Modifications</p>
+        <p className="mb-4">
+          RYVIVE ROOTS reserves the right to modify menus, pricing, delivery schedules, or services due to operational requirements without prior notice.
+        </p>
+
+        <p className="mb-4 font-semibold">14. Service Suspension / Termination</p>
+        <p className="mb-4">
+          Services may be suspended or terminated without refund in cases of abusive behaviour, repeated misuse of policies, provision of false information, or violation of these Terms & Conditions.
+        </p>
+
+        <p className="mb-4 font-semibold">15. Intellectual Property</p>
+        <p className="mb-4">
+          All content, branding, logos, images, packaging, and materials are the intellectual property of RYVIVE ROOTS and may not be copied, reproduced, or used without prior written authorization.
+        </p>
+
+        <p className="mb-4 font-semibold">16. Force Majeure</p>
+        <p className="mb-4">
+          RYVIVE ROOTS shall not be liable for service delays or failures caused by events beyond reasonable control, including but not limited to natural disasters, government actions, strikes, pandemics, or transportation disruptions.
+        </p>
+
+        <p className="mb-4 font-semibold">17. Limitation of Liability</p>
+        <p className="mb-4">
+          To the maximum extent permitted by law, RYVIVE ROOTS shall not be liable for any indirect, incidental, or consequential damages. Liability, if any, shall be limited to the subscription amount paid by the customer.
+        </p>
+
+        <p className="mb-4 font-semibold">18. Severability</p>
+        <p className="mb-4">
+          If any provision of these Terms & Conditions is held to be invalid or unenforceable, the remaining provisions shall continue to remain in full force and effect.
+        </p>
+
+        <p className="mb-4 font-semibold">19. Acceptance of Terms</p>
+        <p className="mb-0">
+          By subscribing to or using RYVIVE ROOTS services, customers confirm that they have read, understood, and agreed to these Terms & Conditions.
+        </p>
       </div>
+
+      <label className="flex items-start gap-4 cursor-pointer" style={{ padding: '4px 0' }}>
+        <div className="relative flex items-center justify-center mt-0.5" style={{ width: '18px', height: '18px' }}>
+          <input type="checkbox" checked={termsAgreed} onChange={(e) => setTermsAgreed(e.target.checked)} className="absolute opacity-0 w-full h-full cursor-pointer z-10" />
+          <div style={{
+            width: '100%',
+            height: '100%',
+            border: `1px solid ${termsAgreed ? SAGE_DARK : 'rgba(42,37,32,0.3)'}`,
+            background: termsAgreed ? SAGE_DARK : 'transparent',
+            borderRadius: '2px',
+            transition: 'all 0.2s ease',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center'
+          }}>
+            {termsAgreed && <Check size={12} strokeWidth={3} color={CREAM} />}
+          </div>
+        </div>
+        <div style={{ fontSize: '13px', color: 'rgba(42,37,32,0.8)', lineHeight: 1.6, userSelect: 'none' }}>
+          I have read and agree to the Terms & Conditions.
+        </div>
+      </label>
     </div>
   </div>);
 }

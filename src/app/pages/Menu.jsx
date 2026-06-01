@@ -445,7 +445,7 @@ const DishItem = memo(function DishItem({ dish, index, isSaved, onSave, onOpen, 
 
 // ─── Static style objects (hoisted to avoid re-creation on render) ───────────
 
-const heroLabelStyle = { fontSize: '10px', color: SAGE_DARK };
+const heroLabelStyle = { fontSize: '10px', color: SAGE_DARK, fontWeight: 600 };
 const heroTitleStyle = { fontSize: 'clamp(40px, 6vw, 80px)', lineHeight: 1.02, color: INK, fontWeight: 300, letterSpacing: '-0.015em' };
 const italicStyle = { fontStyle: 'italic' };
 const heroDescStyle = { fontSize: '14px', lineHeight: 1.85, color: 'rgba(42,37,32,0.6)', maxWidth: '520px' };
@@ -468,12 +468,12 @@ const leftPageStyle = { background: DARK, boxShadow: '20px 0 40px -20px rgba(42,
 const imageOverlayStyle = { background: 'linear-gradient(180deg, rgba(20,17,15,0.15) 0%, rgba(20,17,15,0.6) 100%)' };
 const pageCurlRightStyle = { width: '24px', background: 'linear-gradient(90deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.18) 100%)' };
 const pageCurlLeftStyle = { width: '24px', background: 'linear-gradient(270deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.08) 100%)' };
-const chapterLabelStyle = { fontSize: '11px', color: SAGE };
+const chapterLabelStyle = { fontSize: '11px', color: CREAM, fontWeight: 600 };
 const spreadTitleStyle = { fontSize: 'clamp(28px, 3.6vw, 48px)', lineHeight: 1.05, color: CREAM, fontWeight: 300 };
 
 const rightPageStyle = { background: CREAM_2, zIndex: 1 };
 const blurbStyle = { fontSize: '15px', color: 'rgba(42,37,32,0.65)', lineHeight: 1.7, maxWidth: '420px' };
-const pageNumberLeftStyle = { fontSize: '11px', color: SAGE_DARK };
+const pageNumberLeftStyle = { fontSize: '11px', color: SAGE_DARK, fontWeight: 600 };
 const pageNumberRightStyle = { fontSize: '10px', color: 'rgba(42,37,32,0.5)' };
 
 const dishItemBorderStyle = { borderBottom: '1px solid rgba(42,37,32,0.12)' };
@@ -489,9 +489,9 @@ const modalDishNameStyle = { fontSize: '26px', color: INK, fontWeight: 300, line
 const modalDishPriceStyle = { fontSize: '20px', color: SAGE_DARK };
 const modalDishDescStyle = { fontSize: '14px', color: 'rgba(42,37,32,0.7)', lineHeight: 1.75 };
 const modalDividerStyle = { borderTop: '1px solid rgba(42,37,32,0.12)' };
-const modalIngredientsLabelStyle = { fontSize: '10px', color: SAGE_DARK };
+const modalIngredientsLabelStyle = { fontSize: '10px', color: SAGE_DARK, fontWeight: 600 };
 const modalIngredientsTextStyle = { fontSize: '13px', color: 'rgba(42,37,32,0.7)', lineHeight: 1.7 };
 const modalAddBtnStyle = { fontSize: '11px', background: INK, color: CREAM, border: `1px solid ${INK}`, borderRadius: '1px' };
 
-const closingLabelStyle = { fontSize: '10px', color: SAGE };
+const closingLabelStyle = { fontSize: '10px', color: CREAM, fontWeight: 600 };
 const closingTextStyle = { fontSize: 'clamp(22px, 2.4vw, 32px)', color: CREAM, lineHeight: 1.4, fontWeight: 300 };

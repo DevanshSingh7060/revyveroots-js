@@ -1,6 +1,6 @@
 import { motion } from 'motion/react';
 import { Link } from 'react-router';
-import { ChevronLeft, ChevronRight } from 'lucide-react';
+import { ChevronLeft, ChevronRight, ShieldCheck, Sparkles, Leaf, Calendar, Clock, Sprout } from 'lucide-react';
 import { useState, useEffect } from 'react';
 // Images
 import heroImage from "@/app/images/Avocado-Shake.png";
@@ -138,8 +138,8 @@ export default function Home() {
         <div className="relative z-10 max-w-[1400px] mx-auto px-8 lg:px-14 w-full pt-32">
           <motion.div initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1, ease: 'easeOut' }} className="max-w-3xl">
             {/* Eyebrow Text */}
-            <div className="tracking-[0.42em] uppercase mb-10 flex items-center gap-4" style={{ fontSize: '11px', color: SAGE }}>
-              <span style={{ width: '36px', height: '1px', background: SAGE, display: 'inline-block' }}/>
+            <div className="tracking-[0.42em] uppercase mb-10 flex items-center gap-4" style={{ fontSize: '11px', color: CREAM, fontWeight: 600 }}>
+              <span style={{ width: '36px', height: '1px', background: CREAM, display: 'inline-block' }}/>
               CRAFTED FOR BALANCE, FRESHNESS, AND FLAVOUR.
             </div>
             
@@ -172,7 +172,7 @@ export default function Home() {
           animate={{ y: [0, 6, 0] }} 
           transition={{ repeat: Infinity, duration: 2.4 }} 
           className="absolute bottom-10 left-1/2 -translate-x-1/2 z-10 tracking-[0.34em] uppercase" 
-          style={{ fontSize: '10px', color: 'rgba(244,239,230,0.55)', background: 'none', border: 'none', cursor: 'pointer', padding: 0 }}
+          style={{ fontSize: '10px', color: 'rgba(244,239,230,0.8)', fontWeight: 600, background: 'none', border: 'none', cursor: 'pointer', padding: 0 }}
           aria-label="Scroll to next section"
         >
           Scroll
@@ -184,7 +184,7 @@ export default function Home() {
         <div className="max-w-[1100px] mx-auto px-8 lg:px-14 text-center">
           <motion.div initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.9 }}>
             {/* Section Label */}
-            <div className="tracking-[0.42em] uppercase mb-8" style={{ fontSize: '11px', color: SAGE_DARK }}>WHAT WE SERVE</div>
+            <div className="tracking-[0.42em] uppercase mb-8" style={{ fontSize: '11px', color: SAGE_DARK, fontWeight: 600 }}>WHAT WE SERVE</div>
             
             {/* Main Heading */}
             <h2 className="font-serif mx-auto mb-8" style={{ fontSize: 'clamp(28px, 3.4vw, 44px)', lineHeight: 1.2, color: INK, fontWeight: 300, maxWidth: '900px' }}>
@@ -206,7 +206,7 @@ export default function Home() {
         <div className="max-w-[1400px] mx-auto px-8 lg:px-14">
           <div className="flex items-end justify-between mb-20 flex-wrap gap-8">
             <div>
-              <div className="tracking-[0.42em] uppercase mb-6" style={{ fontSize: '11px', color: SAGE_DARK }}>— Signature</div>
+              <div className="tracking-[0.42em] uppercase mb-6" style={{ fontSize: '11px', color: SAGE_DARK, fontWeight: 600 }}>— Signature</div>
               <h2 className="font-serif text-left" style={{ fontSize: 'clamp(34px, 4.2vw, 56px)', lineHeight: 1.05, color: INK, fontWeight: 300, letterSpacing: '-0.01em' }}>
                 Our signature<br />
                 <em style={{ fontStyle: 'italic' }}>categories.</em>
@@ -318,7 +318,7 @@ export default function Home() {
             </motion.div>
 
             <motion.div initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.9, delay: 0.15 }}>
-              <div className="tracking-[0.42em] uppercase mb-6 text-left" style={{ fontSize: '11px', color: SAGE }}>— Philosophy</div>
+              <div className="tracking-[0.42em] uppercase mb-6 text-left" style={{ fontSize: '11px', color: CREAM, fontWeight: 600 }}>— Philosophy</div>
               <h2 className="font-serif mb-12 text-left" style={{ fontSize: 'clamp(32px, 3.8vw, 50px)', lineHeight: 1.1, color: CREAM, fontWeight: 300 }}>
                 Real food.<br />
                 <em style={{ fontStyle: 'italic' }}>Real Ingredients. <br/> Real Change.</em>
@@ -330,7 +330,7 @@ export default function Home() {
                 “At Ryvive Roots, nothing is accidental. From sandwiches and salads to wraps and pasta, soups and juices to reimagined chaat every dish is built around what your body genuinely needs. Clean proteins, fresh vegetables, real ingredients, zero compromise.”
               </p>
 
-              <div className="grid grid-cols-3 gap-8 mb-12 pt-10" style={{ borderTop: '1px solid rgba(244,239,230,0.15)' }}>
+              <div className="grid grid-cols-3 gap-8 mb-8 pt-10" style={{ borderTop: '1px solid rgba(244,239,230,0.15)' }}>
                 {[
             { label: 'Farm Sourced', v: '100', s: '%' },
             { label: 'Preservatives', v: '00', s: '%' },
@@ -343,6 +343,25 @@ export default function Home() {
                   </div>))}
               </div>
 
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-y-6 gap-x-8 pt-8 mb-12 text-left" style={{ borderTop: '1px solid rgba(244,239,230,0.12)' }}>
+                {[
+                  { icon: ShieldCheck, text: 'No Preservatives' },
+                  { icon: Sparkles, text: 'No Added Sugar' },
+                  { icon: Leaf, text: 'No Artificial Flavours' },
+                  { icon: Calendar, text: 'Rotational Menu' },
+                  { icon: Clock, text: 'Morning & Evening Delivery' },
+                  { icon: Sprout, text: 'Fresh Daily Preparation' },
+                ].map((item, i) => {
+                  const Icon = item.icon;
+                  return (
+                    <div key={i} className="flex items-center gap-3">
+                      <Icon size={16} strokeWidth={1.4} color={SAGE} className="flex-shrink-0" />
+                      <span style={{ fontSize: '12px', color: 'rgba(244,239,230,0.72)', letterSpacing: '0.04em' }}>{item.text}</span>
+                    </div>
+                  );
+                })}
+              </div>
+
             </motion.div>
           </div>
         </div>
@@ -353,7 +372,7 @@ export default function Home() {
         <div className="max-w-[1100px] mx-auto px-8 lg:px-14">
           {/* Section Header */}
           <div className="text-center mb-20 relative">
-            <div className="tracking-[0.42em] uppercase mb-6" style={{ fontSize: '11px', color: SAGE_DARK }}>— Voices</div>
+            <div className="tracking-[0.42em] uppercase mb-6" style={{ fontSize: '11px', color: SAGE_DARK, fontWeight: 600 }}>— Voices</div>
             <h2 className="font-serif" style={{ fontSize: 'clamp(30px, 3.5vw, 46px)', lineHeight: 1.1, color: INK, fontWeight: 300 }}>
               CLIENT DIARIES
             </h2>
@@ -437,7 +456,7 @@ export default function Home() {
         
         <div className="relative max-w-[900px] mx-auto px-8 lg:px-14 text-center">
           <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.9 }}>
-            <div className="tracking-[0.42em] uppercase mb-8" style={{ fontSize: '11px', color: SAGE }}>— Final Creed</div>
+            <div className="tracking-[0.42em] uppercase mb-8" style={{ fontSize: '11px', color: CREAM, fontWeight: 600 }}>— Final Creed</div>
             
             {/* Main Heading */}
             <h2 className="font-serif mb-12" style={{ fontSize: 'clamp(34px, 4.4vw, 60px)', lineHeight: 1.05, color: CREAM, fontWeight: 300, letterSpacing: '-0.01em' }}>

@@ -125,7 +125,7 @@ export function SiteFooter() {
 
             {/* EXPLORE COLUMN */}
             <div data-footer-column>
-              <div data-footer-mark className="tracking-[0.36em] uppercase mb-5" style={{ fontSize: '10px', color: SAGE, fontWeight: 600 }}>
+              <div data-footer-mark className="tracking-[0.36em] uppercase mb-5" style={{ fontSize: '10px', color: CREAM, fontWeight: 600 }}>
                 Explore
               </div>
               <ul className="space-y-3">
@@ -141,7 +141,7 @@ export function SiteFooter() {
 
             {/* HELP & POLICIES COLUMN */}
             <div data-footer-column>
-              <div data-footer-mark className="tracking-[0.36em] uppercase mb-5" style={{ fontSize: '10px', color: SAGE, fontWeight: 600 }}>
+              <div data-footer-mark className="tracking-[0.36em] uppercase mb-5" style={{ fontSize: '10px', color: CREAM, fontWeight: 600 }}>
                 HELP & POLICIES
               </div>
               <ul className="space-y-3">
@@ -160,7 +160,7 @@ export function SiteFooter() {
 
             {/* CONTACT COLUMN */}
             <div data-footer-right>
-              <div data-footer-mark className="tracking-[0.36em] uppercase mb-5" style={{ fontSize: '10px', color: SAGE, fontWeight: 600 }}>
+              <div data-footer-mark className="tracking-[0.36em] uppercase mb-5" style={{ fontSize: '10px', color: CREAM, fontWeight: 600 }}>
                 CONTACT
               </div>
               <ul className="space-y-3" style={{ color: 'rgba(244,239,230,0.85)', fontSize: '13px', fontWeight: 500 }}>

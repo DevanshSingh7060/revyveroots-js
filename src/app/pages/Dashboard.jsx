@@ -786,7 +786,7 @@ export default function Dashboard() {
         letterSpacing: "0.24em",
         textTransform: "uppercase",
         color: SAGE_DARK,
-        fontWeight: 400,
+        fontWeight: 600,
     };
     // ─── Nav items ──────────────────────────────────────────────────────────────
     const navItems = [
@@ -863,7 +863,7 @@ export default function Dashboard() {
         }} aria-label="Close dashboard menu">
               <XIcon size={16} strokeWidth={1.6}/>
             </button>
-            <div className="tracking-[0.42em] uppercase mb-3" style={{ fontSize: "10px", color: SAGE }}>
+            <div className="tracking-[0.42em] uppercase mb-3" style={{ fontSize: "10px", color: CREAM, fontWeight: 600 }}>
               — Member
             </div>
             <div className="font-serif mb-1" style={{ fontSize: "18px", color: CREAM, fontWeight: 300 }}>

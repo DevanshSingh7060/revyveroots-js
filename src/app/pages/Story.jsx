@@ -55,7 +55,7 @@ export default function Story() {
         <ParallaxStorySection variant="solid" image={bg01OurStory} id="our-story">
           <div className={`${slideShellClass} text-center`}>
             <div className="max-w-[880px] mx-auto" style={{ color: '#F4EFE6' }}>
-              <span className="inline-block uppercase mb-5" style={{ fontSize: '11px', letterSpacing: '0.4em', color: '#C4CFB0' }}>
+              <span className="inline-block uppercase mb-5" style={{ fontSize: '11px', letterSpacing: '0.4em', color: '#F4EFE6', fontWeight: 600 }}>
                 Live. Relive. Believe.
               </span>
               <h1 className="font-serif" style={{ fontSize: 'clamp(48px, 8vw, 100px)', lineHeight: 1.02, fontWeight: 300, letterSpacing: '-0.02em', textShadow: '0 2px 30px rgba(0,0,0,0.55)' }}>
@@ -74,7 +74,7 @@ export default function Story() {
         <ParallaxStorySection variant="transparent" id="made-by-hands">
           <div className={`${slideShellClass} text-center`}>
             <div className="max-w-[880px] mx-auto" style={{ color: '#F4EFE6' }}>
-              <span className="inline-block uppercase mb-5" style={{ fontSize: '11px', letterSpacing: '0.4em', color: '#C4CFB0' }}>
+              <span className="inline-block uppercase mb-5" style={{ fontSize: '11px', letterSpacing: '0.4em', color: '#F4EFE6', fontWeight: 600 }}>
                 Crafted in-house
               </span>
               <h2 className="font-serif" style={{ fontSize: 'clamp(40px, 7vw, 88px)', lineHeight: 1.05, fontWeight: 300, letterSpacing: '-0.01em', textShadow: '0 2px 30px rgba(0,0,0,0.6)' }}>
@@ -93,7 +93,7 @@ export default function Story() {
         <ParallaxStorySection variant="solid" image={bg03RealIngredients} id="real-ingredients">
           <div className={`${slideShellClass} text-center`}>
             <div className="max-w-[880px] mx-auto" style={{ color: '#F4EFE6' }}>
-              <span className="inline-block uppercase mb-5" style={{ fontSize: '11px', letterSpacing: '0.4em', color: '#C4CFB0' }}>
+              <span className="inline-block uppercase mb-5" style={{ fontSize: '11px', letterSpacing: '0.4em', color: '#F4EFE6', fontWeight: 600 }}>
                 Rooted in nature
               </span>
               <h2 className="font-serif" style={{ fontSize: 'clamp(40px, 7vw, 88px)', lineHeight: 1.05, fontWeight: 300, letterSpacing: '-0.01em', textShadow: '0 2px 30px rgba(0,0,0,0.55)' }}>
@@ -112,7 +112,7 @@ export default function Story() {
         <ParallaxStorySection variant="transparent" id="eat-well">
           <div className={`${slideShellClass} text-center`}>
             <div className="max-w-[880px] mx-auto" style={{ color: '#F4EFE6' }}>
-              <span className="inline-block uppercase mb-5" style={{ fontSize: '11px', letterSpacing: '0.4em', color: '#C4CFB0' }}>
+              <span className="inline-block uppercase mb-5" style={{ fontSize: '11px', letterSpacing: '0.4em', color: '#F4EFE6', fontWeight: 600 }}>
                 Nutrition with intention
               </span>
               <h2 className="font-serif" style={{ fontSize: 'clamp(40px, 7vw, 88px)', lineHeight: 1.05, fontWeight: 300, letterSpacing: '-0.01em', textShadow: '0 2px 30px rgba(0,0,0,0.6)' }}>
@@ -131,7 +131,7 @@ export default function Story() {
         <ParallaxStorySection variant="solid" image={bg05MindfulHospitality} id="mindful-hospitality">
           <div className={`${slideShellClass} text-center`}>
             <div className="max-w-[880px] mx-auto" style={{ color: '#F4EFE6' }}>
-              <span className="inline-block uppercase mb-5" style={{ fontSize: '11px', letterSpacing: '0.4em', color: '#C4CFB0' }}>
+              <span className="inline-block uppercase mb-5" style={{ fontSize: '11px', letterSpacing: '0.4em', color: '#F4EFE6', fontWeight: 600 }}>
                 A refined ritual
               </span>
               <h2 className="font-serif" style={{ fontSize: 'clamp(40px, 7vw, 88px)', lineHeight: 1.05, fontWeight: 300, letterSpacing: '-0.01em', textShadow: '0 2px 30px rgba(0,0,0,0.55)' }}>
@@ -150,7 +150,7 @@ export default function Story() {
         <ParallaxStorySection variant="transparent" id="pure-living">
           <div className={`${slideShellClass} text-center`}>
             <div className="max-w-[880px] mx-auto" style={{ color: '#F4EFE6' }}>
-              <span className="inline-block uppercase mb-5" style={{ fontSize: '11px', letterSpacing: '0.4em', color: '#C4CFB0' }}>
+              <span className="inline-block uppercase mb-5" style={{ fontSize: '11px', letterSpacing: '0.4em', color: '#F4EFE6', fontWeight: 600 }}>
                 Quietly sustainable
               </span>
               <h2 className="font-serif" style={{ fontSize: 'clamp(40px, 7vw, 88px)', lineHeight: 1.05, fontWeight: 300, letterSpacing: '-0.01em', textShadow: '0 2px 30px rgba(0,0,0,0.6)' }}>
@@ -299,7 +299,7 @@ export default function Story() {
                 {/* CONTENT - RIGHT */}
                 <div>
                   <motion.div initial={{ opacity: 0, y: 36 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: '-100px' }} transition={{ duration: 1.05, ease }} className="max-w-[760px] ml-auto">
-                    <p className="mb-4 uppercase tracking-[0.35em]" style={{ fontSize: '11px', color: '#C4CFB0', letterSpacing: '0.35em', textShadow: '0 1px 16px rgba(0,0,0,0.6)' }}>
+                    <p className="mb-4 uppercase tracking-[0.35em]" style={{ fontSize: '11px', color: '#F4EFE6', letterSpacing: '0.35em', fontWeight: 600, textShadow: '0 1px 16px rgba(0,0,0,0.6)' }}>
                       Quiet Sustainability
                     </p>
                     <h2 className="font-serif mb-4" style={{ fontSize: 'clamp(30px, 3.6vw, 44px)', color: CREAM, fontWeight: 300, lineHeight: 1.04, textShadow: '0 2px 30px rgba(0,0,0,0.6)' }}>
