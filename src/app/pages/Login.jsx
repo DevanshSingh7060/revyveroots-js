@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Link } from 'react-router';
 import { motion } from 'motion/react';
-import { Eye, EyeOff } from 'lucide-react';
+import { Eye, EyeOff, ArrowLeft } from 'lucide-react';
 import { ImageWithFallback } from '../components/figma/ImageWithFallback';
 import { CREAM, CREAM_2, DARK, INK, SAGE_DARK } from '../theme';
 export default function Login() {
@@ -33,6 +33,17 @@ export default function Login() {
       </div>
 
       <motion.div initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }} className="relative z-10 w-full max-w-[460px] mx-6 my-20 p-12" style={{ background: CREAM, border: `1px solid rgba(244,239,230,0.2)`, boxShadow: '0 40px 80px rgba(0,0,0,0.4)' }}>
+        <button 
+          onClick={() => window.history.back()} 
+          className="absolute top-6 left-6 inline-flex items-center gap-1.5 tracking-[0.22em] uppercase transition-colors duration-300" 
+          style={{ fontSize: '10px', color: 'rgba(42,37,32,0.5)', fontWeight: 500, background: 'none', border: 'none', cursor: 'pointer', padding: 0 }}
+          onMouseEnter={(e) => { e.currentTarget.style.color = INK; }}
+          onMouseLeave={(e) => { e.currentTarget.style.color = 'rgba(42,37,32,0.5)'; }}
+          aria-label="Go back"
+        >
+          <ArrowLeft size={13} strokeWidth={1.5} /> Back
+        </button>
+
         <div className="text-center mb-10">
           <Link to="/" className="font-serif tracking-[0.22em] uppercase" style={{ fontSize: '13px', color: INK }}>
             Ryvive <span style={{ color: SAGE_DARK }}>Roots</span>

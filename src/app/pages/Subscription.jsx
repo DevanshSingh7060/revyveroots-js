@@ -180,7 +180,15 @@ export default function Subscription() {
       </div>
       <div className="relative z-10 max-w-[1400px] mx-auto px-5 sm:px-8 lg:px-14 w-full pt-32 lg:pt-40 pb-16 lg:pb-24 text-center">
         <motion.div initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1, ease }}>
-          <div className="tracking-[0.42em] uppercase mb-8" style={{ fontSize: '10px', color: SAGE }}>— Membership</div>
+          <div className="inline-block px-4 py-1.5 rounded-full border mb-8 backdrop-blur-[6px] tracking-[0.42em] uppercase" style={{
+            fontSize: '10px',
+            color: CREAM,
+            borderColor: 'rgba(139,149,121,0.4)',
+            background: 'rgba(139,149,121,0.1)',
+            fontWeight: 500
+          }}>
+            — Membership
+          </div>
           <h1 className="font-serif mx-auto" style={{ fontSize: 'clamp(40px, 6.4vw, 86px)', lineHeight: 1.02, color: CREAM, fontWeight: 300, letterSpacing: '-0.015em', maxWidth: '900px' }}>
             A daily ritual,<br />
             <em style={{ fontStyle: 'italic', color: SAGE }}>delivered.</em>

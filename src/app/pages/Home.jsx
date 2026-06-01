@@ -67,6 +67,37 @@ const categories = [
     { title: "Healthy Pasta", desc: "Comfort food with a clean, healthy twist. Flavorful, satisfying, and perfect for every craving.", price: "Elixirs", image: pasta },
     { title: "Healthy Juices", desc: "Wholesome blends made from the freshest ingredients. A natural boost to energize your day, one sip at a time.", price: "Elixirs", image: heroImage }
 ];
+// Custom premium ease-in-out scroll utility
+const smoothScrollTo = (targetEl) => {
+  if (!targetEl) return;
+  const targetPosition = targetEl.getBoundingClientRect().top + window.scrollY;
+  const startPosition = window.scrollY;
+  const distance = targetPosition - startPosition;
+  const duration = 800; // 800ms duration for premium feel
+  let startTime = null;
+
+  const easeInOutQuad = (t, b, c, d) => {
+    t /= d / 2;
+    if (t < 1) return (c / 2) * t * t + b;
+    t--;
+    return (-c / 2) * (t * (t - 2) - 1) + b;
+  };
+
+  const animation = (currentTime) => {
+    if (startTime === null) startTime = currentTime;
+    const timeElapsed = currentTime - startTime;
+    const run = easeInOutQuad(timeElapsed, startPosition, distance, duration);
+    window.scrollTo(0, run);
+    if (timeElapsed < duration) {
+      requestAnimationFrame(animation);
+    } else {
+      window.scrollTo(0, targetPosition);
+    }
+  };
+
+  requestAnimationFrame(animation);
+};
+
 export default function Home() {
     // Testimonial sliding state
     const [currentIndex, setCurrentIndex] = useState(0);
@@ -133,13 +164,23 @@ export default function Home() {
           </motion.div>
         </div>
 
-        <motion.div animate={{ y: [0, 6, 0] }} transition={{ repeat: Infinity, duration: 2.4 }} className="absolute bottom-10 left-1/2 -translate-x-1/2 z-10 tracking-[0.34em] uppercase" style={{ fontSize: '10px', color: 'rgba(244,239,230,0.55)' }}>
+        <motion.button 
+          onClick={() => {
+            const nextSection = document.getElementById('what-we-serve');
+            smoothScrollTo(nextSection);
+          }}
+          animate={{ y: [0, 6, 0] }} 
+          transition={{ repeat: Infinity, duration: 2.4 }} 
+          className="absolute bottom-10 left-1/2 -translate-x-1/2 z-10 tracking-[0.34em] uppercase" 
+          style={{ fontSize: '10px', color: 'rgba(244,239,230,0.55)', background: 'none', border: 'none', cursor: 'pointer', padding: 0 }}
+          aria-label="Scroll to next section"
+        >
           Scroll
-        </motion.div>
+        </motion.button>
       </section>
 
       {/* 2. WHAT WE SERVE SECTION — LIGHT (ORIGINAL VISUAL STYLE PRESERVED) */}
-      <section data-tone="light" className="pt-20 pb-16 lg:pt-28 lg:pb-20" style={{ background: CREAM }}>
+      <section id="what-we-serve" data-tone="light" className="pt-20 pb-16 lg:pt-28 lg:pb-20" style={{ background: CREAM }}>
         <div className="max-w-[1100px] mx-auto px-8 lg:px-14 text-center">
           <motion.div initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.9 }}>
             {/* Section Label */}
