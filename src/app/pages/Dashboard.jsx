@@ -849,12 +849,12 @@ export default function Dashboard() {
             }}/>)}
 
         {/* ── SIDEBAR ─────────────────────────────────────────────────────── */}
-        <aside className={`flex flex-col w-[280px] flex-shrink-0 transition-transform duration-300 ease-out
-            lg:sticky lg:top-[72px] lg:translate-x-0 lg:h-[calc(100vh-72px)] lg:w-[260px]
+        <aside className={`flex flex-col w-[280px] flex-shrink-0 transition-transform duration-300 ease-out overflow-hidden
+            lg:sticky lg:top-[72px] lg:translate-x-0 lg:h-[calc(100vh-72px)] lg:max-h-[calc(100vh-72px)] lg:w-[260px]
             fixed top-0 left-0 z-50 h-screen
             ${mobileNavOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'}`} style={{ background: DARK }} aria-label="Dashboard navigation" aria-hidden={!mobileNavOpen ? undefined : false}>
           {/* Member info */}
-          <div className="px-7 py-8 pt-24 lg:pt-8 relative" style={{ borderBottom: `1px solid rgba(244,239,230,0.08)` }}>
+          <div className="px-7 py-8 pt-24 lg:pt-8 relative flex-shrink-0" style={{ borderBottom: `1px solid rgba(244,239,230,0.08)` }}>
             {/* Mobile-only close button */}
             <button type="button" onClick={() => setMobileNavOpen(false)} className="lg:hidden absolute top-4 right-4 flex items-center justify-center w-9 h-9 rounded-full" style={{
             background: 'rgba(244,239,230,0.05)',
@@ -875,7 +875,7 @@ export default function Dashboard() {
           </div>
 
           {/* Nav */}
-          <nav className="flex-1 px-3 py-4 space-y-0.5 overflow-y-auto" style={{ scrollbarWidth: 'none' }}>
+          <nav className="flex-1 px-3 py-4 space-y-0.5 overflow-y-auto min-h-0" style={{ scrollbarWidth: 'none' }}>
             {navItems.map((item) => {
             const Icon = item.icon;
             const isActive = activeTab === item.id;
@@ -906,7 +906,7 @@ export default function Dashboard() {
                         fontWeight: 700,
                         padding: ".1rem .4rem",
                         letterSpacing: "0.06em",
-                    }}>
+                     }}>
                       {unreadCount}
                     </span>)}
                 </button>);
@@ -914,7 +914,7 @@ export default function Dashboard() {
           </nav>
 
           {/* Membership info box */}
-          <div className="mx-4 my-4 px-5 py-4" style={{
+          <div className="mx-4 my-4 px-5 py-4 flex-shrink-0" style={{
             background: "rgba(244,239,230,0.05)",
             border: `1px solid rgba(244,239,230,0.08)`,
         }}>
@@ -953,7 +953,7 @@ export default function Dashboard() {
           </div>
 
           {/* Sign out */}
-          <div style={{ borderTop: `1px solid rgba(244,239,230,0.08)` }}>
+          <div className="flex-shrink-0" style={{ borderTop: `1px solid rgba(244,239,230,0.08)` }}>
             <Link to="/login" className="flex items-center gap-3 px-7 py-5 transition-all duration-200" style={{
             fontSize: "10px",
             color: "rgba(244,239,230,0.38)",

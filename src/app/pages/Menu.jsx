@@ -59,6 +59,7 @@ export default function Menu() {
             position: 'absolute',
             inset: 0,
             willChange: 'transform',
+            force3D: true,
         });
 
         pages.forEach((page, i) => {
@@ -73,8 +74,8 @@ export default function Menu() {
             scrollTrigger: {
                 trigger: containerRef.current,
                 start: 'top 72px',
-                end: `+=${window.innerHeight * 0.85 * spreads.length}`,
-                scrub: 1.8,
+                end: `+=${window.innerHeight * 0.45 * spreads.length}`,
+                scrub: 0.2, // Instantly trace scroll wheel
                 pin: true,
                 anticipatePin: 1,
                 onUpdate: (self) => {
@@ -128,7 +129,7 @@ export default function Menu() {
             const st = stRef.current;
             const progress = i / Math.max(1, spreads.length - 1);
             const targetScroll = st.start + (st.end - st.start) * progress;
-            gsap.to(window, { scrollTo: targetScroll, duration: 1.2, ease: 'power3.inOut' });
+            gsap.to(window, { scrollTo: targetScroll, duration: 0.7, ease: 'power2.out' });
         }
     }, []);
 
@@ -359,7 +360,7 @@ const SpreadView = memo(function SpreadView({ spread, saved, onSave, onOpen, pag
         <div className="w-full h-full flex flex-col lg:flex-row bg-[#F4EFE6] overflow-hidden relative">
             {/* LEFT PAGE — image */}
             <div className="w-full lg:w-1/2 h-[35vh] lg:h-full relative overflow-hidden flex-shrink-0" style={leftPageStyle}>
-                <ImageWithFallback src={spread.image} alt={spread.title} className="w-full h-full object-cover" loading="lazy" />
+                <ImageWithFallback src={spread.image} alt={spread.title} className="w-full h-full object-cover" loading="lazy" decoding="async" />
                 <div className="absolute inset-0" style={imageOverlayStyle} />
                 <div className="absolute top-0 right-0 bottom-0 hidden lg:block" style={pageCurlRightStyle} />
                 <div className="absolute top-6 left-6 lg:top-10 lg:left-10 font-serif tracking-[0.42em]" style={chapterLabelStyle}>
@@ -413,10 +414,10 @@ const SpreadView = memo(function SpreadView({ spread, saved, onSave, onOpen, pag
 const DishItem = memo(function DishItem({ dish, index, isSaved, onSave, onOpen, shouldAnimate }) {
     return (
         <motion.li
-            initial={shouldAnimate ? { opacity: 0, y: 14 } : false}
+            initial={shouldAnimate ? { opacity: 0, y: 12 } : false}
             whileInView={shouldAnimate ? { opacity: 1, y: 0 } : undefined}
-            viewport={{ once: true }}
-            transition={{ delay: 0.1 + index * 0.05, duration: 0.5, ease }}
+            viewport={{ once: true, margin: "-40px" }}
+            transition={{ delay: 0.05 + index * 0.03, duration: 0.35, ease: 'easeOut' }}
             className="pb-4"
             style={dishItemBorderStyle}
         >
