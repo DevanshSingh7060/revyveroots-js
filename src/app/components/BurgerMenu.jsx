@@ -185,72 +185,72 @@ export function BurgerMenu({ headerText, headerMuted }) {
 
     {/* MENU PANEL */}
     <motion.div initial={{ x: '100%' }} animate={{ x: 0 }} exit={{ x: '100%' }} transition={{ duration: 0.65, ease }} className="relative h-screen w-[420px] bg-[#F5F1E8] overflow-hidden">
-      <div className="flex h-full flex-col px-[40px] pt-[34px] pb-[28px]" style={{ scrollbarWidth: 'none' }}>
+      <div className="flex h-full flex-col px-[40px] pt-[4vh] pb-[3vh] justify-between" style={{ scrollbarWidth: 'none' }}>
 
-        {/* TOP */}
-        <div className="flex items-start justify-between">
-          
-          {/* LOGO */}
-          <img src={Logo} alt="Ryvive Roots" className="w-[132px] object-contain"/>
+        {/* TOP & TAGLINE */}
+        <div className="flex flex-col flex-shrink-0">
+          <div className="flex items-start justify-between">
+            {/* LOGO */}
+            <img src={Logo} alt="Ryvive Roots" className="w-[132px] object-contain"/>
+          </div>
 
-        
+          {/* TAGLINE */}
+          <p className="mt-[2vh] max-w-[290px]" style={{
+                      fontSize: '13px',
+                      lineHeight: 1.8,
+                      color: 'rgba(30,25,21,0.72)',
+                  }}>
+            Crafted for balance, freshness, and flavour.
+          </p>
         </div>
 
-        {/* TAGLINE */}
-        <p className="mt-[28px] max-w-[290px]" style={{
-                    fontSize: '13px',
-                    lineHeight: 1.8,
-                    color: 'rgba(30,25,21,0.72)',
-                }}>
-          Crafted for balance, freshness, and flavour.
-        </p>
+        {/* MIDDLE CONTENT: IMAGES & SOCIALS */}
+        <div className="flex-grow flex flex-col justify-center items-center gap-[3vh] min-h-0 py-[2vh]">
+          
+          {/* IMAGE COMPOSITION */}
+          <div className="flex flex-col items-center gap-[2vh] flex-shrink min-h-0 w-full">
 
-        {/* IMAGE COMPOSITION */}
-        <div className="mt-7 flex flex-col items-center">
+            {/* TOP ROW */}
+            <div className="flex gap-3 justify-center w-full flex-shrink min-h-0">
+              <a href="https://www.instagram.com/ryvive_roots/" target="_blank" rel="noreferrer" className="overflow-hidden rounded-[8px] flex-shrink min-h-0 block">
+                <img src={Menu1} alt="" className="h-[10vh] max-h-[92px] min-h-[50px] w-auto aspect-[154/92] object-cover transition-transform duration-700 hover:scale-[1.04]"/>
+              </a>
 
-          {/* TOP ROW */}
-          <div className="flex gap-3">
-            <a href="https://www.instagram.com/ryvive_roots/" target="_blank" rel="noreferrer" className="overflow-hidden rounded-[8px]">
-              <img src={Menu1} alt="" className="h-[92px] w-[154px] object-cover transition-transform duration-700 hover:scale-[1.04]"/>
-            </a>
+              <a href="https://www.instagram.com/ryvive_roots/" target="_blank" rel="noreferrer" className="overflow-hidden rounded-[8px] flex-shrink min-h-0 block">
+                <img src={Menu2} alt="" className="h-[10vh] max-h-[92px] min-h-[50px] w-auto aspect-[154/92] object-cover transition-transform duration-700 hover:scale-[1.04]"/>
+              </a>
+            </div>
 
-            <a href="https://www.instagram.com/ryvive_roots/" target="_blank" rel="noreferrer" className="overflow-hidden rounded-[8px]">
-              <img src={Menu2} alt="" className="h-[92px] w-[154px] object-cover transition-transform duration-700 hover:scale-[1.04]"/>
+            {/* BOTTOM IMAGE */}
+            <a href="https://www.instagram.com/ryvive_roots/" target="_blank" rel="noreferrer" className="overflow-hidden rounded-[8px] flex-shrink min-h-0 block">
+                <img src={Menu3} alt="" className="h-[14vh] max-h-[132px] min-h-[70px] w-auto aspect-[320/132] object-cover transition-transform duration-700 hover:scale-[1.04]"/>
             </a>
           </div>
 
-          {/* BOTTOM IMAGE */}
-          <a href="https://www.instagram.com/ryvive_roots/" target="_blank" rel="noreferrer" className="mt-5 overflow-hidden rounded-[8px]">
-              <img src={Menu3} alt="" className="h-[132px] w-[320px] object-cover transition-transform duration-700 hover:scale-[1.04]"/>
-          </a>
-        </div>
-
-        {/* SOCIAL ICONS */}
-        <div className="mt-9 flex items-center justify-center gap-8">
-
-          {[
-                    { Icon: Instagram, href: 'https://www.instagram.com/ryvive_roots?igsh=aHc1Z3hmMWVheWdl' },
-                    { Icon: Linkedin, href: '#' },
-                    { Icon: Youtube, href: '#' },
-                ].map(({ Icon, href }, index) => (<a key={index} href={href} className="flex h-[38px] w-[38px] items-center justify-center rounded-full border border-black/10 transition-all duration-300 hover:border-black/20 hover:-translate-y-[1px]" {...(index === 0 ? { target: '_blank', rel: 'noreferrer' } : {})}>
-              <Icon size={16} strokeWidth={1.5} className="text-[#2B2622]"/>
-            </a>))}
+          {/* SOCIAL ICONS */}
+          <div className="flex items-center justify-center gap-8 flex-shrink-0">
+            {[
+                      { Icon: Instagram, href: 'https://www.instagram.com/ryvive_roots?igsh=aHc1Z3hmMWVheWdl' },
+                      { Icon: Linkedin, href: '#' },
+                      { Icon: Youtube, href: '#' },
+                  ].map(({ Icon, href }, index) => (<a key={index} href={href} className="flex h-[38px] w-[38px] items-center justify-center rounded-full border border-black/10 transition-all duration-300 hover:border-black/20 hover:-translate-y-[1px]" {...(index === 0 ? { target: '_blank', rel: 'noreferrer' } : {})}>
+                <Icon size={16} strokeWidth={1.5} className="text-[#2B2622]"/>
+              </a>))}
+          </div>
         </div>
 
         {/* ADDRESS */}
-        <div className="mt-8 border-t border-black/5 pt-6">
-
+        <div className="border-t border-black/5 pt-5 flex-shrink-0">
           <div className="text-center" style={{
-                    fontSize: '13px',
-                    lineHeight: 2,
-                    color: 'rgba(30,25,21,0.72)',
-                }}>
+                      fontSize: '13px',
+                      lineHeight: 2,
+                      color: 'rgba(30,25,21,0.72)',
+                  }}>
             Shop No 01, Saraswati Bhuvan,<br />
             Near Roshan Automobile, Phadke Cross Road,<br />
             Opp. Hotel Nav Gomantak,<br />
             Dombivli East, Maharashtra 421201.
           </div>
-
         </div>
 
       </div>

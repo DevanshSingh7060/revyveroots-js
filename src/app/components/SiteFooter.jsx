@@ -5,6 +5,7 @@ import { Instagram, Linkedin, Youtube, Phone } from 'lucide-react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { CREAM, SAGE } from '../theme';
+import Logo from '../images/LOGO.png';
 const footerImage = new URL('../images/FooterImg.jpeg', import.meta.url).href;
 gsap.registerPlugin(ScrollTrigger);
 export function SiteFooter() {
@@ -26,7 +27,7 @@ export function SiteFooter() {
         if (!footer || !content || !image)
             return;
         const leftGroup = footer.querySelector('[data-footer-left]');
-        const centerGroup = footer.querySelector('[data-footer-center]');
+        const columns = footer.querySelectorAll('[data-footer-column]');
         const rightGroup = footer.querySelector('[data-footer-right]');
         const bottomRow = footer.querySelector('[data-footer-bottom]');
         const navItems = footer.querySelectorAll('[data-footer-nav-item]');
@@ -36,12 +37,14 @@ export function SiteFooter() {
         const ctx = gsap.context(() => {
             // Initial states
             gsap.set(content, { opacity: 0, y: 30 });
-            gsap.set([leftGroup, centerGroup, rightGroup, bottomRow, navItems, contactItems, socialItems, footerMarks].flat().filter(Boolean), { y: 0, willChange: 'transform' });
+            gsap.set([leftGroup, Array.from(columns), rightGroup, bottomRow, navItems, contactItems, socialItems, footerMarks].flat().filter(Boolean), { y: 0, willChange: 'transform' });
             if (leftGroup) {
                 gsap.fromTo(leftGroup, { y: 14 }, { y: -10, ease: 'none', scrollTrigger: { trigger: footer, start: 'top bottom', end: 'bottom top', scrub: 1.15 } });
             }
-            if (centerGroup) {
-                gsap.fromTo(centerGroup, { y: 10 }, { y: -12, ease: 'none', scrollTrigger: { trigger: footer, start: 'top 92%', end: 'bottom top', scrub: 1.2 } });
+            if (columns.length > 0) {
+                columns.forEach((col, index) => {
+                    gsap.fromTo(col, { y: 10 + index * 2 }, { y: -12 - index * 2, ease: 'none', scrollTrigger: { trigger: footer, start: 'top 92%', end: 'bottom top', scrub: 1.2 } });
+                });
             }
             if (rightGroup) {
                 gsap.fromTo(rightGroup, { y: 12 }, { y: -8, ease: 'none', scrollTrigger: { trigger: footer, start: 'top 88%', end: 'bottom top', scrub: 1.18 } });
@@ -102,56 +105,83 @@ export function SiteFooter() {
 
       <div ref={contentRef} className="relative z-10">
         <div className="max-w-[1400px] mx-auto px-6 sm:px-8 lg:px-14 pt-24 pb-10 lg:pt-28 lg:pb-12">
-          <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-[1.2fr_0.8fr_0.8fr] gap-10 lg:gap-14 items-start">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-[1.5fr_0.8fr_1.1fr_0.8fr] gap-10 lg:gap-14 items-start">
+            
+            {/* BRAND / LOGO COLUMN */}
             <div data-footer-left className="max-w-[26rem]">
-              <div data-footer-mark className="font-serif tracking-[0.26em] uppercase mb-5" style={{ fontSize: '13px', color: CREAM }}>
-                Ryvive <span style={{ color: SAGE }}>Roots</span>
+              <div data-footer-mark className="mb-6">
+                <img src={Logo} alt="Ryvive Roots" style={{
+                    height: '63px',
+                    width: 'auto',
+                    objectFit: 'contain',
+                    opacity: 0.95,
+                    filter: 'brightness(0) saturate(100%) invert(93%) sepia(8%) saturate(400%) hue-rotate(20deg) brightness(103%) contrast(92%)',
+                }}/>
               </div>
-              <p data-footer-mark className="max-w-[22rem]" style={{ color: 'rgba(244,239,230,0.78)', fontSize: '14px', lineHeight: 1.9 }}>
+              <p data-footer-mark className="max-w-[22rem]" style={{ color: 'rgba(244,239,230,0.85)', fontSize: '14px', lineHeight: 1.9, fontWeight: 500 }}>
                 Conscious dining, crafted with calm precision and warm hospitality.
               </p>
             </div>
 
-            <div data-footer-center>
-              <div data-footer-mark className="tracking-[0.34em] uppercase mb-5" style={{ fontSize: '10px', color: SAGE }}>
+            {/* EXPLORE COLUMN */}
+            <div data-footer-column>
+              <div data-footer-mark className="tracking-[0.36em] uppercase mb-5" style={{ fontSize: '10px', color: SAGE, fontWeight: 600 }}>
                 Explore
               </div>
               <ul className="space-y-3">
                 {['Menu', 'Subscription', 'Story', 'Reservations'].map((item) => (<li key={item} data-footer-nav-item>
-                    {item === 'Story' ? (<Link to="/story" className="transition-colors" style={{ color: 'rgba(244,239,230,0.78)', fontSize: '13px', letterSpacing: '0.04em' }} onMouseEnter={(e) => (e.currentTarget.style.color = CREAM)} onMouseLeave={(e) => (e.currentTarget.style.color = 'rgba(244,239,230,0.78)')}>
+                    {item === 'Story' ? (<Link to="/story" className="transition-colors" style={{ color: 'rgba(244,239,230,0.85)', fontSize: '13px', letterSpacing: '0.04em', fontWeight: 500 }} onMouseEnter={(e) => (e.currentTarget.style.color = CREAM)} onMouseLeave={(e) => (e.currentTarget.style.color = 'rgba(244,239,230,0.85)')}>
                         {item}
-                      </Link>) : (<a href="#" className="transition-colors" style={{ color: 'rgba(244,239,230,0.78)', fontSize: '13px', letterSpacing: '0.04em' }} onMouseEnter={(e) => (e.currentTarget.style.color = CREAM)} onMouseLeave={(e) => (e.currentTarget.style.color = 'rgba(244,239,230,0.78)')}>
+                      </Link>) : (<a href="#" className="transition-colors" style={{ color: 'rgba(244,239,230,0.85)', fontSize: '13px', letterSpacing: '0.04em', fontWeight: 500 }} onMouseEnter={(e) => (e.currentTarget.style.color = CREAM)} onMouseLeave={(e) => (e.currentTarget.style.color = 'rgba(244,239,230,0.85)')}>
                         {item}
                       </a>)}
                   </li>))}
               </ul>
             </div>
 
-            <div data-footer-right>
-              <div data-footer-mark className="tracking-[0.34em] uppercase mb-5" style={{ fontSize: '10px', color: SAGE }}>
-                Contact
+            {/* HELP & POLICIES COLUMN */}
+            <div data-footer-column>
+              <div data-footer-mark className="tracking-[0.36em] uppercase mb-5" style={{ fontSize: '10px', color: SAGE, fontWeight: 600 }}>
+                HELP & POLICIES
               </div>
-              <ul className="space-y-3" style={{ color: 'rgba(244,239,230,0.78)', fontSize: '13px' }}>
+              <ul className="space-y-3">
+                {[
+                  { label: 'PRIVACY POLICY', href: '#' },
+                  { label: 'TERMS & CONDITIONS', href: '#' },
+                  { label: 'CANCELLATION & REFUND POLICY', href: '#' },
+                  { label: 'SHIPPING & DELIVERY POLICY', href: '#' },
+                ].map((item) => (<li key={item.label} data-footer-nav-item>
+                    <a href={item.href} className="transition-colors" style={{ color: 'rgba(244,239,230,0.85)', fontSize: '13px', letterSpacing: '0.04em', fontWeight: 500 }} onMouseEnter={(e) => (e.currentTarget.style.color = CREAM)} onMouseLeave={(e) => (e.currentTarget.style.color = 'rgba(244,239,230,0.85)')}>
+                      {item.label}
+                    </a>
+                  </li>))}
+              </ul>
+            </div>
+
+            {/* CONTACT COLUMN */}
+            <div data-footer-right>
+              <div data-footer-mark className="tracking-[0.36em] uppercase mb-5" style={{ fontSize: '10px', color: SAGE, fontWeight: 600 }}>
+                CONTACT
+              </div>
+              <ul className="space-y-3" style={{ color: 'rgba(244,239,230,0.85)', fontSize: '13px', fontWeight: 500 }}>
                 <li data-footer-contact-item>+91 97656 00701</li>
                 <li data-footer-contact-item>hello@ryviveroots.com</li>
                 <li data-footer-contact-item>Dombivli, Mumbai</li>
               </ul>
             </div>
           </div>
-
           <div data-footer-bottom className="mt-16 pt-6 flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between" style={{ borderTop: '1px solid rgba(244,239,230,0.16)' }}>
-            <div data-footer-mark style={{ color: 'rgba(244,239,230,0.62)', fontSize: '10px', letterSpacing: '0.26em', textTransform: 'uppercase' }}>
+            <div data-footer-mark style={{ color: 'rgba(244,239,230,0.75)', fontSize: '10px', letterSpacing: '0.26em', textTransform: 'uppercase', fontWeight: 500 }}>
               © 2026 Ryvive Roots — Mumbai
             </div>
             <div className="flex items-center gap-5">
-              {[Instagram, Linkedin, Youtube, Phone].map((Icon, i) => (<a key={i} data-footer-social-item href="#" className="transition-colors" style={{ color: 'rgba(244,239,230,0.68)' }} onMouseEnter={(e) => (e.currentTarget.style.color = CREAM)} onMouseLeave={(e) => (e.currentTarget.style.color = 'rgba(244,239,230,0.68)')}>
+              {[Instagram, Linkedin, Youtube, Phone].map((Icon, i) => (<a key={i} data-footer-social-item href="#" className="transition-colors" style={{ color: 'rgba(244,239,230,0.82)' }} onMouseEnter={(e) => (e.currentTarget.style.color = CREAM)} onMouseLeave={(e) => (e.currentTarget.style.color = 'rgba(244,239,230,0.82)')}>
                   <Icon className="w-4 h-4" strokeWidth={1.3}/>
                 </a>))}
             </div>
           </div>
         </div>
       </div>
-
       <div className="relative z-10 h-12 lg:h-16" style={{
             background: 'linear-gradient(180deg, rgba(15,12,10,0) 0%, rgba(15,12,10,0.44) 100%)',
         }}/>

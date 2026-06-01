@@ -21,7 +21,7 @@ export function SiteHeader() {
         return () => window.removeEventListener('scroll', onScroll);
     }, [location.pathname]);
     const headerText = overLight ? INK : CREAM;
-    const headerMuted = overLight ? 'rgba(42,37,32,0.6)' : 'rgba(244,239,230,0.6)';
+    const headerMuted = overLight ? 'rgba(42,37,32,0.72)' : 'rgba(244,239,230,0.72)';
     const headerBorder = overLight ? 'rgba(42,37,32,0.15)' : 'rgba(244,239,230,0.15)';
     const links = [
         { label: 'Story', to: '/story' },
@@ -54,7 +54,7 @@ export function SiteHeader() {
                 (item.to === '/subscription' && location.pathname === '/subscription') ||
                 (item.to === '/franchise' && location.pathname === '/franchise') ||
                 (item.to === '/career' && location.pathname === '/career');
-            return (<Link key={item.label} to={item.to} className="tracking-[0.2em] uppercase transition-colors duration-300 relative" style={{ fontSize: '11px', color: isCurrent ? headerText : headerMuted }} onMouseEnter={(e) => { if (!isCurrent)
+            return (<Link key={item.label} to={item.to} className="tracking-[0.2em] uppercase transition-colors duration-300 relative" style={{ fontSize: '13px', fontWeight: 500, color: isCurrent ? headerText : headerMuted }} onMouseEnter={(e) => { if (!isCurrent)
                 e.currentTarget.style.color = headerText; }} onMouseLeave={(e) => { if (!isCurrent)
                 e.currentTarget.style.color = headerMuted; }}>
                   {item.label}
@@ -64,8 +64,8 @@ export function SiteHeader() {
           </nav>
 
           <div className="flex items-center gap-4">
-            <Link to="/login" className="hidden md:inline-flex items-center gap-2 tracking-[0.2em] uppercase transition-colors duration-300" style={{ fontSize: '10px', color: headerMuted }} onMouseEnter={(e) => { e.currentTarget.style.color = headerText; }} onMouseLeave={(e) => { e.currentTarget.style.color = headerMuted; }}>
-              <User size={13} strokeWidth={1.4}/> Login
+            <Link to="/login" className="hidden md:inline-flex items-center gap-2 tracking-[0.2em] uppercase transition-colors duration-300" style={{ fontSize: '12px', fontWeight: 500, color: headerMuted }} onMouseEnter={(e) => { e.currentTarget.style.color = headerText; }} onMouseLeave={(e) => { e.currentTarget.style.color = headerMuted; }}>
+              <User size={14} strokeWidth={1.6}/> Login
             </Link>
 
             <BurgerMenu headerText={headerText} headerMuted={headerMuted}/>

@@ -565,7 +565,7 @@ function PlanStep({ selectedPlan, setSelectedPlan, durations, setDurations, onCo
               </AnimatePresence>
             </div>
 
-            <ul className="grid grid-cols-1 sm:grid-cols-2 gap-x-4 gap-y-2.5 mb-6 flex-1">
+            <ul className="flex flex-col gap-y-2.5 mb-6 flex-1">
               {features[p.key.toUpperCase()][duration].map((f) => (<li key={f} className="flex items-start gap-3" style={{ fontSize: '14px', lineHeight: 1.5, opacity: 0.9 }}>
                 <Check size={16} strokeWidth={1.5} style={{ color: isSel ? SAGE : SAGE_DARK, marginTop: '2px', flexShrink: 0 }} />
                 {f}
