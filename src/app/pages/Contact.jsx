@@ -125,7 +125,7 @@ export default function Contact() {
                     <h3 className="tracking-[0.22em] uppercase" style={{ fontSize: '10px', color: SAGE_DARK, fontWeight: 600 }}>Email</h3>
                   </div>
                   <div className="flex flex-col gap-2.5 font-serif mt-auto" style={{ fontSize: '15px', color: INK, fontWeight: 300 }}>
-                    <a href="mailto:hello@ryviveroots.com" className="hover:text-[#8B9579] transition-colors font-serif">hello@ryviveroots.com</a>
+                    
                     <a href="mailto:customersupport@ryviveroots.com" className="hover:text-[#8B9579] transition-colors font-serif">customersupport@ryviveroots.com</a>
                     <a href="mailto:management@ryviveroots.com" className="hover:text-[#8B9579] transition-colors font-serif">management@ryviveroots.com</a>
                   </div>
