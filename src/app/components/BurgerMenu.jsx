@@ -17,7 +17,7 @@ const links = [
     { label: 'Subscription', to: '/subscription' },
     { label: 'Franchise', to: '/franchise' },
     { label: 'Career', to: '/career' },
-    { label: 'Contact Us', to: '/#contact' },
+    { label: 'Contact Us', to: '/contact' },
 ];
 export function BurgerMenu({ headerText, headerMuted }) {
     const [isOpen, setIsOpen] = useState(false);

@@ -6,6 +6,7 @@ import Menu from './pages/Menu';
 import Subscription from './pages/Subscription';
 import Franchise from './pages/Franchise';
 import Career from './pages/Career';
+import Contact from './pages/Contact';
 import Login from './pages/Login';
 import Dashboard from './pages/Dashboard';
 export const router = createBrowserRouter([
@@ -23,6 +24,7 @@ export const router = createBrowserRouter([
             { path: 'subscription', Component: Subscription },
             { path: 'franchise', Component: Franchise },
             { path: 'career', Component: Career },
+            { path: 'contact', Component: Contact },
             { path: 'dashboard', Component: Dashboard },
             { path: '*', Component: Home },
         ],
