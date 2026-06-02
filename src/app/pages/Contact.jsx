@@ -73,81 +73,80 @@ export default function Contact() {
       <section data-tone="light" className="py-20 lg:py-28" style={{ background: CREAM }}>
         <div className="max-w-[1400px] mx-auto px-8 lg:px-14">
           <div className="grid grid-cols-1 lg:grid-cols-[45fr_55fr] gap-12 lg:gap-16 items-start">
-            
-            {/* LEFT COLUMN: CONTACT DETAILS & MAP */}
-            <div className="flex flex-col gap-8">
+            {/* LEFT COLUMN: CONTACT DETAILS */}
+            <div className="flex flex-col gap-6 w-full">
               
-              {/* DETAILS CARDS */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                {[
-                  {
-                    icon: Phone,
-                    title: 'Phone',
-                    content: '+91 97656 00701',
-                    link: 'tel:+919765600701'
-                  },
-                  {
-                    icon: MessageSquare,
-                    title: 'Whatsapp',
-                    content: '+91 97656 00701',
-                    link: 'https://wa.me/919765600701'
-                  },
-                  {
-                    icon: Mail,
-                    title: 'Email',
-                    content: 'hello@ryviveroots.com',
-                    link: 'mailto:hello@ryviveroots.com'
-                  },
-                  {
-                    icon: MapPin,
-                    title: 'Our Shop',
-                    content: 'Dombivli East, Mumbai',
-                    link: '#map-section'
-                  }
-                ].map((item, i) => {
-                  const Icon = item.icon;
-                  return (
-                    <motion.a 
-                      key={item.title} 
-                      href={item.link}
-                      initial={{ opacity: 0, y: 16 }}
-                      whileInView={{ opacity: 1, y: 0 }}
-                      viewport={{ once: true }}
-                      transition={{ delay: i * 0.08, duration: 0.6 }}
-                      whileHover={{ y: -4, boxShadow: '0 12px 24px -10px rgba(42,37,32,0.12)' }}
-                      className="p-6 transition-all duration-300 block text-left relative overflow-hidden"
-                      style={{ 
-                        background: CREAM_2, 
-                        border: `1.5px solid rgba(42,37,32,0.06)`,
-                        borderRadius: '2px'
-                      }}
-                    >
-                      <div className="flex items-center gap-4 mb-4">
-                        <div className="flex items-center justify-center w-10 h-10 rounded-full" style={{ background: 'rgba(139,149,121,0.1)' }}>
-                          <Icon size={18} strokeWidth={1.3} color={SAGE_DARK}/>
-                        </div>
-                        <h3 className="tracking-[0.22em] uppercase" style={{ fontSize: '10px', color: SAGE_DARK, fontWeight: 600 }}>{item.title}</h3>
-                      </div>
-                      <div style={{ fontSize: '14px', color: INK, fontWeight: 400 }}>{item.content}</div>
-                    </motion.a>
-                  );
-                })}
+              {/* TOP ROW: PHONE AND EMAIL CARDS */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 items-stretch">
+                {/* PHONE CARD */}
+                <motion.div
+                  initial={{ opacity: 0, y: 16 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.6 }}
+                  whileHover={{ y: -4, boxShadow: '0 12px 24px -10px rgba(42,37,32,0.12)' }}
+                  className="p-8 transition-all duration-300 text-left relative overflow-hidden flex flex-col h-full"
+                  style={{ 
+                    background: CREAM_2, 
+                    border: `1.5px solid rgba(42,37,32,0.06)`,
+                    borderRadius: '2px'
+                  }}
+                >
+                  <div className="flex items-center gap-4 mb-5">
+                    <div className="flex items-center justify-center w-10 h-10 rounded-full" style={{ background: 'rgba(139,149,121,0.1)' }}>
+                      <Phone size={18} strokeWidth={1.3} color={SAGE_DARK}/>
+                    </div>
+                    <h3 className="tracking-[0.22em] uppercase" style={{ fontSize: '10px', color: SAGE_DARK, fontWeight: 600 }}>Phone</h3>
+                  </div>
+                  <div className="flex flex-col gap-2 font-serif mt-auto" style={{ fontSize: '18px', color: INK, fontWeight: 300, lineHeight: 1.4 }}>
+                    <a href="tel:+919076000468" className="hover:text-[#8B9579] transition-colors">+91 9076000468</a>
+                    <a href="tel:+919765600701" className="hover:text-[#8B9579] transition-colors">+91 97656 00701</a>
+                  </div>
+                </motion.div>
+
+                {/* EMAIL CARD */}
+                <motion.div
+                  initial={{ opacity: 0, y: 16 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.6, delay: 0.1 }}
+                  whileHover={{ y: -4, boxShadow: '0 12px 24px -10px rgba(42,37,32,0.12)' }}
+                  className="p-8 transition-all duration-300 text-left relative overflow-hidden flex flex-col h-full"
+                  style={{ 
+                    background: CREAM_2, 
+                    border: `1.5px solid rgba(42,37,32,0.06)`,
+                    borderRadius: '2px'
+                  }}
+                >
+                  <div className="flex items-center gap-4 mb-5">
+                    <div className="flex items-center justify-center w-10 h-10 rounded-full" style={{ background: 'rgba(139,149,121,0.1)' }}>
+                      <Mail size={18} strokeWidth={1.3} color={SAGE_DARK}/>
+                    </div>
+                    <h3 className="tracking-[0.22em] uppercase" style={{ fontSize: '10px', color: SAGE_DARK, fontWeight: 600 }}>Email</h3>
+                  </div>
+                  <div className="flex flex-col gap-2.5 font-serif mt-auto" style={{ fontSize: '15px', color: INK, fontWeight: 300 }}>
+                    <a href="mailto:hello@ryviveroots.com" className="hover:text-[#8B9579] transition-colors font-serif">hello@ryviveroots.com</a>
+                    <a href="mailto:customersupport@ryviveroots.com" className="hover:text-[#8B9579] transition-colors font-serif">customersupport@ryviveroots.com</a>
+                    <a href="mailto:management@ryviveroots.com" className="hover:text-[#8B9579] transition-colors font-serif">management@ryviveroots.com</a>
+                  </div>
+                </motion.div>
               </div>
 
-              {/* DETAILED SHOP ADDRESS CARD */}
+              {/* SHOP LOCATION CARD */}
               <motion.div
                 initial={{ opacity: 0, y: 16 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: 0.3 }}
-                className="p-8 text-left"
+                transition={{ duration: 0.6, delay: 0.2 }}
+                whileHover={{ y: -4, boxShadow: '0 12px 24px -10px rgba(42,37,32,0.12)' }}
+                className="p-8 transition-all duration-300 text-left relative overflow-hidden"
                 style={{ 
                   background: CREAM_2, 
                   border: `1.5px solid rgba(42,37,32,0.06)`,
                   borderRadius: '2px'
                 }}
               >
-                <div className="flex items-center gap-4 mb-4">
+                <div className="flex items-center gap-4 mb-5">
                   <div className="flex items-center justify-center w-10 h-10 rounded-full" style={{ background: 'rgba(139,149,121,0.1)' }}>
                     <MapPin size={18} strokeWidth={1.3} color={SAGE_DARK}/>
                   </div>
@@ -155,9 +154,11 @@ export default function Contact() {
                 </div>
                 <div style={{ fontSize: '14px', color: INK, lineHeight: 1.8 }}>
                   Shop No 01, Saraswati Bhuvan,<br />
-                  Near Roshan Automobile, Phadke Cross Road,<br />
+                  Near Roshan Automobile,<br />
+                  Phadke Cross Road,<br />
                   Opp. Hotel Nav Gomantak,<br />
-                  Dombivli East, Maharashtra 421201.
+                  Dombivli East,<br />
+                  Maharashtra 421201.
                 </div>
               </motion.div>
 
@@ -167,7 +168,7 @@ export default function Contact() {
                 initial={{ opacity: 0, y: 16 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.7, delay: 0.35 }}
+                transition={{ duration: 0.7, delay: 0.3 }}
                 className="w-full relative overflow-hidden" 
                 style={{ 
                   border: '1.5px solid rgba(42,37,32,0.06)',
