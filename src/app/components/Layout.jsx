@@ -34,15 +34,15 @@ export function Layout() {
           position: 'fixed',
           bottom: '32px',
           right: '32px',
-          width: '68px',
-          height: '68px',
-          borderRadius: '999px',
-          background: '#FFFFFF',
-          padding: '14px',
+          width: '56px',
+          height: '56px',
+          borderRadius: '50%',
+          background: '#F5F1E8',
+          border: '1px solid #2B241E',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
-          boxShadow: '0 10px 30px rgba(0,0,0,0.12)',
+          boxShadow: '0 8px 24px rgba(43,36,30,0.12)',
           zIndex: 9999,
         }}
       >
@@ -50,10 +50,11 @@ export function Layout() {
           src={WhatsappIcon}
           alt="WhatsApp Chat"
           style={{
-            width: '100%',
-            height: '100%',
+            width: '24px',
+            height: '24px',
             objectFit: 'contain',
             display: 'block',
+            filter: 'brightness(0) saturate(100%) invert(14%) sepia(16%) saturate(628%) hue-rotate(341deg) brightness(94%) contrast(90%)',
           }}
         />
       </motion.div>
