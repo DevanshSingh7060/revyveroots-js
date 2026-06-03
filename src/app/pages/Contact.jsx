@@ -101,8 +101,8 @@ export default function Contact() {
                 </div>
             </section>
 
-            {/* ── MAIN SECTION — dark two-column ──────────────────────── */}
-            <section style={{ background: DARK_2 }} className="py-24 lg:py-32">
+            {/* ── MAIN SECTION — light beige two-column ───────────── */}
+            <section data-tone="light" style={{ background: CREAM }} className="py-24 lg:py-32">
                 <div className="max-w-[1400px] mx-auto px-8 lg:px-14">
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-start">
 
@@ -113,7 +113,7 @@ export default function Contact() {
                             viewport={{ once: true }}
                             transition={{ duration: 0.9, ease }}
                         >
-                            <div className="tracking-[0.42em] uppercase mb-5" style={{ fontSize: '10px', color: SAGE }}>
+                            <div className="tracking-[0.42em] uppercase mb-5" style={{ fontSize: '10px', color: SAGE_DARK }}>
                                 — Find Us
                             </div>
                             <h2
@@ -122,12 +122,12 @@ export default function Contact() {
                                     fontSize: 'clamp(34px, 4.4vw, 58px)',
                                     lineHeight: 1.05,
                                     fontWeight: 300,
-                                    color: CREAM,
+                                    color: INK,
                                     letterSpacing: '-0.015em',
                                 }}
                             >
                                 We're always<br />
-                                <em style={{ fontStyle: 'italic', color: SAGE }}>close by.</em>
+                                <em style={{ fontStyle: 'italic', color: SAGE_DARK }}>close by.</em>
                             </h2>
 
                             {/* Contact detail rows */}
@@ -140,7 +140,7 @@ export default function Contact() {
                                         viewport={{ once: true }}
                                         transition={{ duration: 0.6, delay: i * 0.08, ease }}
                                         className="flex items-start gap-6"
-                                        style={{ borderBottom: '1px solid rgba(244,239,230,0.07)', paddingBottom: '2.5rem' }}
+                                        style={{ borderBottom: '1px solid rgba(42,37,32,0.1)', paddingBottom: '2.5rem' }}
                                     >
                                         {/* Icon circle */}
                                         <div
@@ -149,15 +149,15 @@ export default function Contact() {
                                                 width: 44,
                                                 height: 44,
                                                 borderRadius: '50%',
-                                                border: '1px solid rgba(139,149,121,0.3)',
-                                                background: 'rgba(139,149,121,0.07)',
+                                                border: '1px solid rgba(107,117,96,0.3)',
+                                                background: 'rgba(107,117,96,0.07)',
                                             }}
                                         >
-                                            <item.icon size={17} strokeWidth={1.3} color={SAGE} />
+                                            <item.icon size={17} strokeWidth={1.3} color={SAGE_DARK} />
                                         </div>
 
                                         <div>
-                                            <div className="tracking-[0.32em] uppercase mb-3" style={{ fontSize: '9px', color: SAGE }}>
+                                            <div className="tracking-[0.32em] uppercase mb-3" style={{ fontSize: '9px', color: SAGE_DARK }}>
                                                 {item.label}
                                             </div>
                                             {item.lines.map((line, j) =>
@@ -166,14 +166,14 @@ export default function Contact() {
                                                         key={j}
                                                         href={line.href}
                                                         className="block transition-colors duration-300"
-                                                        style={{ fontSize: '15px', color: 'rgba(244,239,230,0.8)', lineHeight: 1.7, fontWeight: 300 }}
-                                                        onMouseEnter={(e) => (e.currentTarget.style.color = CREAM)}
-                                                        onMouseLeave={(e) => (e.currentTarget.style.color = 'rgba(244,239,230,0.8)')}
+                                                        style={{ fontSize: '15px', color: INK, lineHeight: 1.7, fontWeight: 300 }}
+                                                        onMouseEnter={(e) => (e.currentTarget.style.color = SAGE_DARK)}
+                                                        onMouseLeave={(e) => (e.currentTarget.style.color = INK)}
                                                     >
                                                         {line.text}
                                                     </a>
                                                 ) : (
-                                                    <p key={j} style={{ fontSize: '14px', color: 'rgba(244,239,230,0.6)', lineHeight: 1.75, fontWeight: 300 }}>
+                                                    <p key={j} style={{ fontSize: '14px', color: 'rgba(42,37,32,0.6)', lineHeight: 1.75, fontWeight: 300 }}>
                                                         {line.text}
                                                     </p>
                                                 )
@@ -185,7 +185,7 @@ export default function Contact() {
 
                             {/* Social row */}
                             <div className="mt-10 flex items-center gap-5">
-                                <span className="tracking-[0.32em] uppercase mr-2" style={{ fontSize: '9px', color: 'rgba(244,239,230,0.35)' }}>Follow</span>
+                                <span className="tracking-[0.32em] uppercase mr-2" style={{ fontSize: '9px', color: 'rgba(42,37,32,0.35)' }}>Follow</span>
                                 <a
                                     href="https://www.instagram.com/ryvive_roots/"
                                     target="_blank"
@@ -193,30 +193,29 @@ export default function Contact() {
                                     className="flex items-center justify-center transition-all duration-300"
                                     style={{
                                         width: 38, height: 38, borderRadius: '50%',
-                                        border: '1px solid rgba(244,239,230,0.12)',
-                                        color: 'rgba(244,239,230,0.55)',
+                                        border: '1px solid rgba(42,37,32,0.15)',
+                                        color: 'rgba(42,37,32,0.45)',
                                     }}
-                                    onMouseEnter={(e) => { e.currentTarget.style.borderColor = SAGE; e.currentTarget.style.color = SAGE; }}
-                                    onMouseLeave={(e) => { e.currentTarget.style.borderColor = 'rgba(244,239,230,0.12)'; e.currentTarget.style.color = 'rgba(244,239,230,0.55)'; }}
+                                    onMouseEnter={(e) => { e.currentTarget.style.borderColor = SAGE_DARK; e.currentTarget.style.color = SAGE_DARK; }}
+                                    onMouseLeave={(e) => { e.currentTarget.style.borderColor = 'rgba(42,37,32,0.15)'; e.currentTarget.style.color = 'rgba(42,37,32,0.45)'; }}
                                 >
                                     <Instagram size={15} strokeWidth={1.4} />
                                 </a>
                             </div>
                         </motion.div>
 
-                        {/* RIGHT — form panel */}
+                        {/* RIGHT — form panel on CREAM_2 */}
                         <motion.div
                             initial={{ opacity: 0, x: 24 }}
                             whileInView={{ opacity: 1, x: 0 }}
                             viewport={{ once: true }}
                             transition={{ duration: 0.9, ease, delay: 0.1 }}
                             style={{
-                                background: 'rgba(244,239,230,0.04)',
-                                border: '1px solid rgba(244,239,230,0.08)',
-                                backdropFilter: 'blur(12px)',
-                                WebkitBackdropFilter: 'blur(12px)',
+                                background: CREAM_2,
+                                border: '1px solid rgba(42,37,32,0.07)',
                                 borderRadius: '3px',
                                 padding: '48px',
+                                boxShadow: '0 20px 60px -20px rgba(42,37,32,0.08)',
                             }}
                         >
                             <AnimatePresence mode="wait">
@@ -229,11 +228,11 @@ export default function Contact() {
                                         transition={{ duration: 0.6, ease }}
                                         className="flex flex-col items-center justify-center text-center py-16"
                                     >
-                                        <CheckCircle2 size={40} strokeWidth={1.2} color={SAGE} style={{ marginBottom: 24 }} />
-                                        <div className="font-serif mb-4" style={{ fontSize: 'clamp(26px, 3vw, 36px)', color: CREAM, fontWeight: 300 }}>
+                                        <CheckCircle2 size={40} strokeWidth={1.2} color={SAGE_DARK} style={{ marginBottom: 24 }} />
+                                        <div className="font-serif mb-4" style={{ fontSize: 'clamp(26px, 3vw, 36px)', color: INK, fontWeight: 300 }}>
                                             Message received.
                                         </div>
-                                        <p style={{ fontSize: '14px', color: 'rgba(244,239,230,0.55)', lineHeight: 1.85, maxWidth: 340 }}>
+                                        <p style={{ fontSize: '14px', color: 'rgba(42,37,32,0.6)', lineHeight: 1.85, maxWidth: 340 }}>
                                             Thank you for reaching out. Our team will be in touch with you shortly.
                                         </p>
                                     </motion.div>
@@ -246,11 +245,11 @@ export default function Contact() {
                                         transition={{ duration: 0.4 }}
                                     >
                                         <div className="mb-10">
-                                            <div className="tracking-[0.42em] uppercase mb-4" style={{ fontSize: '10px', color: SAGE }}>
+                                            <div className="tracking-[0.42em] uppercase mb-4" style={{ fontSize: '10px', color: SAGE_DARK }}>
                                                 — Send a Message
                                             </div>
-                                            <h2 className="font-serif" style={{ fontSize: 'clamp(28px, 3.2vw, 42px)', lineHeight: 1.1, color: CREAM, fontWeight: 300 }}>
-                                                Begin a <em style={{ fontStyle: 'italic', color: SAGE }}>dialogue.</em>
+                                            <h2 className="font-serif" style={{ fontSize: 'clamp(28px, 3.2vw, 42px)', lineHeight: 1.1, color: INK, fontWeight: 300 }}>
+                                                Begin a <em style={{ fontStyle: 'italic' }}>dialogue.</em>
                                             </h2>
                                         </div>
 
@@ -268,8 +267,8 @@ export default function Contact() {
                                                         value={form[key]}
                                                         onChange={onChange(key)}
                                                         style={formInputStyle}
-                                                        onFocus={(e) => (e.currentTarget.style.borderBottomColor = SAGE)}
-                                                        onBlur={(e) => (e.currentTarget.style.borderBottomColor = 'rgba(244,239,230,0.18)')}
+                                                        onFocus={(e) => (e.currentTarget.style.borderBottomColor = SAGE_DARK)}
+                                                        onBlur={(e) => (e.currentTarget.style.borderBottomColor = 'rgba(42,37,32,0.22)')}
                                                     />
                                                 </div>
                                             ))}
@@ -282,8 +281,8 @@ export default function Contact() {
                                                     value={form.message}
                                                     onChange={onChange('message')}
                                                     style={{ ...formInputStyle, resize: 'none', lineHeight: 1.75 }}
-                                                    onFocus={(e) => (e.currentTarget.style.borderBottomColor = SAGE)}
-                                                    onBlur={(e) => (e.currentTarget.style.borderBottomColor = 'rgba(244,239,230,0.18)')}
+                                                    onFocus={(e) => (e.currentTarget.style.borderBottomColor = SAGE_DARK)}
+                                                    onBlur={(e) => (e.currentTarget.style.borderBottomColor = 'rgba(42,37,32,0.22)')}
                                                 />
                                             </div>
 
@@ -297,24 +296,22 @@ export default function Contact() {
                                                     style={{
                                                         fontSize: '11px',
                                                         padding: '18px 32px',
-                                                        background: SAGE,
-                                                        color: DARK_2,
-                                                        border: `1px solid ${SAGE}`,
+                                                        background: INK,
+                                                        color: CREAM,
+                                                        border: `1px solid ${INK}`,
                                                         borderRadius: '2px',
                                                         cursor: 'pointer',
-                                                        fontWeight: 500,
+                                                        fontWeight: 400,
                                                         fontFamily: 'inherit',
-                                                        transition: 'background 0.3s, border-color 0.3s, box-shadow 0.3s',
+                                                        transition: 'background 0.3s, border-color 0.3s',
                                                     }}
                                                     onMouseEnter={(e) => {
-                                                        e.currentTarget.style.background = CREAM;
-                                                        e.currentTarget.style.borderColor = CREAM;
-                                                        e.currentTarget.style.boxShadow = `0 12px 32px -8px rgba(139,149,121,0.35)`;
+                                                        e.currentTarget.style.background = SAGE_DARK;
+                                                        e.currentTarget.style.borderColor = SAGE_DARK;
                                                     }}
                                                     onMouseLeave={(e) => {
-                                                        e.currentTarget.style.background = SAGE;
-                                                        e.currentTarget.style.borderColor = SAGE;
-                                                        e.currentTarget.style.boxShadow = 'none';
+                                                        e.currentTarget.style.background = INK;
+                                                        e.currentTarget.style.borderColor = INK;
                                                     }}
                                                 >
                                                     Send Message <Send size={13} strokeWidth={1.5} />
@@ -428,7 +425,7 @@ const formLabelStyle = {
     fontSize: '9px',
     letterSpacing: '0.34em',
     textTransform: 'uppercase',
-    color: 'rgba(244,239,230,0.45)',
+    color: SAGE_DARK,
     marginBottom: '10px',
     fontWeight: 500,
 };
@@ -437,10 +434,10 @@ const formInputStyle = {
     width: '100%',
     background: 'transparent',
     border: 'none',
-    borderBottom: '1px solid rgba(244,239,230,0.18)',
+    borderBottom: '1px solid rgba(42,37,32,0.22)',
     padding: '12px 0',
     fontSize: '15px',
-    color: 'rgba(244,239,230,0.9)',
+    color: INK,
     outline: 'none',
     fontFamily: 'inherit',
     fontWeight: 300,
