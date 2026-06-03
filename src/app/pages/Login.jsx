@@ -19,6 +19,7 @@ export default function Login() {
         outline: 'none',
         fontFamily: 'inherit',
     };
+    
     const labelStyle = {
         fontSize: '10px',
         letterSpacing: '0.32em',

@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import gsap from 'gsap';
 import { Link } from "react-router";
 import { motion } from "motion/react";
-import { User, Calendar, TrendingUp, Package, MessageCircle, Bell, LogOut, Edit3, Lock, Clock, CheckCircle, Pause, MapPin, Receipt, Menu as MenuIcon, X as XIcon, } from "lucide-react";
+import { User, Calendar, TrendingUp, Package, MessageCircle, Bell, LogOut, Edit3, Lock, Clock, CheckCircle, Pause, MapPin, Receipt, ChevronRight as DashMenuIcon, X as XIcon, } from "lucide-react";
 import { CREAM, CREAM_2, DARK, INK, SAGE, SAGE_DARK } from "../theme";
 // ─── Theme Tokens ─────────────────────────────────────────────────────────────
 const GOLD = "#d4af37";
@@ -832,13 +832,14 @@ export default function Dashboard() {
       `}</style>
       <div className="flex pt-[72px] min-h-screen items-start relative">
         {/* ── MOBILE NAV TRIGGER ─────────────────────────────────────────── */}
-        <button type="button" onClick={() => setMobileNavOpen(true)} className="lg:hidden fixed top-[84px] left-3 z-40 flex items-center justify-center w-11 h-11 rounded-full" style={{
+        <button type="button" onClick={() => setMobileNavOpen(true)} className="lg:hidden fixed top-1/2 -translate-y-1/2 left-0 z-40 flex items-center justify-center w-7 h-14 rounded-r-full" style={{
             background: DARK,
             color: CREAM,
             border: `1px solid rgba(244,239,230,0.18)`,
-            boxShadow: '0 6px 18px -8px rgba(20,17,15,0.4)',
+            borderLeft: 'none',
+            boxShadow: '0 4px 12px -4px rgba(20,17,15,0.35)',
         }} aria-label="Open dashboard menu" aria-expanded={mobileNavOpen}>
-          <MenuIcon size={18} strokeWidth={1.6}/>
+          <DashMenuIcon size={16} strokeWidth={1.8}/>
         </button>
 
         {/* ── MOBILE BACKDROP ────────────────────────────────────────────── */}
