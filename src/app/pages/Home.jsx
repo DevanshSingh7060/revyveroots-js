@@ -225,7 +225,7 @@ export default function Home() {
                 const el = document.querySelector('.marquee-track');
                 if (el) el.scrollBy({ left: -320, behavior: 'smooth' });
               }}
-              className="absolute left-0 top-1/2 -translate-y-1/2 z-10 hidden group-hover/carousel:flex items-center justify-center transition-all duration-300"
+              className="absolute left-0 top-1/2 -translate-y-1/2 z-10 flex lg:hidden lg:group-hover/carousel:flex items-center justify-center transition-all duration-300"
               style={{
                 height: 44,
                 width: 44,
@@ -245,7 +245,7 @@ export default function Home() {
                 const el = document.querySelector('.marquee-track');
                 if (el) el.scrollBy({ left: 320, behavior: 'smooth' });
               }}
-              className="absolute right-0 top-1/2 -translate-y-1/2 z-10 hidden group-hover/carousel:flex items-center justify-center transition-all duration-300"
+              className="absolute right-0 top-1/2 -translate-y-1/2 z-10 flex lg:hidden lg:group-hover/carousel:flex items-center justify-center transition-all duration-300"
               style={{
                 height: 44,
                 width: 44,
