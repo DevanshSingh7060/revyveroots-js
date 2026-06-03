@@ -385,24 +385,42 @@ export default function Contact() {
             </section>
 
             {/* ── CLOSING QUOTE ─────────────────────────────────────────── */}
-            <section className="py-24 lg:py-32 text-center" style={{ background: DARK_2 }}>
-                <div className="max-w-[640px] mx-auto px-8">
+            <section className="relative py-28 lg:py-40 text-center overflow-hidden" style={{ background: DARK_2 }}>
+                {/* Background image with heavy overlay */}
+                <div className="absolute inset-0">
+                    <img
+                        src={FooterImg}
+                        alt=""
+                        className="w-full h-full object-cover"
+                        style={{ filter: 'saturate(0.5) brightness(0.28)' }}
+                    />
+                    <div className="absolute inset-0" style={{
+                        background: 'linear-gradient(180deg, rgba(20,17,15,0.72) 0%, rgba(20,17,15,0.55) 50%, rgba(20,17,15,0.82) 100%)',
+                    }} />
+                    {/* Ambient sage radial glow */}
+                    <div className="absolute inset-0 opacity-20" style={{
+                        background: 'radial-gradient(ellipse at 50% 60%, rgba(139,149,121,0.55) 0%, transparent 65%)',
+                    }} />
+                </div>
+
+                <div className="relative z-10 max-w-[720px] mx-auto px-8">
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
                         transition={{ duration: 0.9, ease }}
                     >
-                        <div
-                            className="w-8 h-px mx-auto mb-8"
-                            style={{ background: SAGE, opacity: 0.5 }}
-                        />
+                        <div className="tracking-[0.44em] uppercase mb-8 flex items-center justify-center gap-4" style={{ fontSize: '10px', color: SAGE }}>
+                            <span style={{ width: 28, height: 1, background: SAGE, display: 'inline-block' }} />
+                            A Final Note
+                            <span style={{ width: 28, height: 1, background: SAGE, display: 'inline-block' }} />
+                        </div>
                         <p
                             className="font-serif"
                             style={{
-                                fontSize: 'clamp(20px, 2.6vw, 30px)',
-                                color: 'rgba(244,239,230,0.65)',
-                                lineHeight: 1.5,
+                                fontSize: 'clamp(24px, 3.2vw, 42px)',
+                                color: CREAM,
+                                lineHeight: 1.4,
                                 fontWeight: 300,
                                 fontStyle: 'italic',
                             }}
