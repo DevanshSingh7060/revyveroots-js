@@ -1,9 +1,38 @@
 import { useState } from 'react';
-import { motion } from 'motion/react';
-import { Phone, Mail, MapPin, MessageSquare, Send } from 'lucide-react';
-import { ImageWithFallback } from '../components/figma/ImageWithFallback';
+import { motion, AnimatePresence } from 'motion/react';
+import { Phone, Mail, MapPin, Send, Instagram, CheckCircle2 } from 'lucide-react';
 import { CREAM, CREAM_2, DARK, DARK_2, INK, SAGE, SAGE_DARK } from '../theme';
-const ContactBg = "https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?auto=format&fit=crop&w=2000&q=80";
+import FooterImg from '../images/Contact-hero.jpg';
+
+const ease = [0.22, 1, 0.36, 1];
+
+const contactDetails = [
+    {
+        icon: Phone,
+        label: 'Call Us',
+        lines: [
+            { text: '+91 90760 00468', href: 'tel:+919076000468' },
+            { text: '+91 97656 00701', href: 'tel:+919765600701' },
+        ],
+    },
+    {
+        icon: Mail,
+        label: 'Write to Us',
+        lines: [
+            { text: 'customersupport@ryviveroots.com', href: 'mailto:customersupport@ryviveroots.com' },
+            { text: 'management@ryviveroots.com', href: 'mailto:management@ryviveroots.com' },
+        ],
+    },
+    {
+        icon: MapPin,
+        label: 'Visit Us',
+        lines: [
+            { text: 'Shop No 01, Saraswati Bhuvan, Near Roshan Automobile,' },
+            { text: 'Phadke Cross Road, Opp. Hotel Nav Gomantak,' },
+            { text: 'Dombivli East, Maharashtra 421201.' },
+        ],
+    },
+];
 
 export default function Contact() {
     const [form, setForm] = useState({ name: '', email: '', subject: '', message: '' });
@@ -15,300 +44,405 @@ export default function Contact() {
         setSubmitted(true);
     };
 
-    const inputStyle = {
-        width: '100%',
-        background: 'transparent',
-        border: 'none',
-        borderBottom: `1px solid rgba(42,37,32,0.22)`,
-        padding: '14px 2px',
-        fontSize: '15px',
-        color: INK,
-        outline: 'none',
-        fontFamily: 'inherit',
-        transition: 'border-color 0.3s ease',
-    };
+    return (
+        <div style={{ background: DARK_2 }} className="min-h-screen">
 
-    const labelStyle = {
-        display: 'block',
-        fontSize: '10px',
-        letterSpacing: '0.32em',
-        textTransform: 'uppercase',
-        color: SAGE_DARK,
-        marginBottom: '6px',
-        fontWeight: 600,
-    };
+            {/* ── HERO ──────────────────────────────────────────────────── */}
+            <section className="relative min-h-screen flex items-end overflow-hidden">
+                {/* BG image */}
+                <div className="absolute inset-0">
+                    <img
+                        src={FooterImg}
+                        alt=""
+                        className="w-full h-full object-cover"
+                        style={{ filter: 'saturate(0.7) brightness(0.45)' }}
+                    />
+                    <div className="absolute inset-0" style={{
+                        background: 'linear-gradient(to bottom, rgba(20,17,15,0.2) 0%, rgba(20,17,15,0.5) 50%, rgba(20,17,15,0.97) 100%)',
+                    }} />
+                </div>
 
-    const onFocus = (e) => {
-        e.currentTarget.style.borderBottomColor = SAGE_DARK;
-    };
-    const onBlur = (e) => {
-        e.currentTarget.style.borderBottomColor = 'rgba(42,37,32,0.22)';
-    };
+                {/* Content — pinned to bottom */}
+                <div className="relative z-10 w-full max-w-[1400px] mx-auto px-8 lg:px-14 pb-20 pt-48">
+                    <motion.div
+                        initial={{ opacity: 0, y: 40 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 1.1, ease }}
+                    >
+                        {/* Eyebrow */}
+                        <div className="flex items-center gap-4 mb-7">
+                            <span style={{ width: 40, height: 1, background: SAGE, display: 'inline-block' }} />
+                            <span className="tracking-[0.44em] uppercase" style={{ fontSize: '10px', color: SAGE }}>
+                                Contact
+                            </span>
+                        </div>
 
-    return (<div style={{ background: CREAM }} className="min-h-screen">
-      {/* HERO — DARK */}
-      <section className="relative min-h-[72vh] flex items-center overflow-hidden" style={{ background: DARK_2 }}>
-        <div className="absolute inset-0">
-          <ImageWithFallback src={ContactBg} alt="Contact hero" style={{ width: '100%', height: '100%', objectFit: 'cover' }}/>
-          <div className="absolute inset-0" style={{ background: 'linear-gradient(180deg, rgba(20,17,15,0.55) 0%, rgba(20,17,15,0.55) 50%, rgba(20,17,15,0.96) 100%)' }}/>
-        </div>
+                        {/* Headline */}
+                        <h1
+                            className="font-serif"
+                            style={{
+                                fontSize: 'clamp(52px, 9vw, 120px)',
+                                lineHeight: 0.95,
+                                fontWeight: 300,
+                                letterSpacing: '-0.025em',
+                                color: CREAM,
+                                maxWidth: '820px',
+                            }}
+                        >
+                            Let's start a<br />
+                            <em style={{ fontStyle: 'italic', color: SAGE }}>conversation.</em>
+                        </h1>
 
-        <div className="relative z-10 max-w-[1400px] mx-auto px-8 lg:px-14 w-full pt-32 pb-20 text-center">
-          <motion.div initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1 }} className="max-w-3xl mx-auto flex flex-col items-center gap-6">
-            <div className="inline-flex items-center gap-3 px-4 py-1.5 rounded-sm" style={{ border: `1px solid ${CREAM}`, fontSize: '10px', letterSpacing: '0.42em', textTransform: 'uppercase', color: CREAM, fontWeight: 600 }}>
-              <span style={{ width: '6px', height: '6px', borderRadius: '50%', background: CREAM, display: 'inline-block' }}/>
-              — CONTACT
-            </div>
-            <h1 className="font-serif" style={{ fontSize: 'clamp(46px, 7vw, 92px)', lineHeight: 1.02, letterSpacing: '-0.015em', color: CREAM, fontWeight: 300 }}>
-              CONTACT
-            </h1>
-            <p className="mx-auto" style={{ fontSize: '15px', lineHeight: 1.85, color: 'rgba(244,239,230,0.65)', maxWidth: '540px' }}>
-              You're just one conversation away from starting your transformation.
-            </p>
-          </motion.div>
-        </div>
-      </section>
+                        {/* Sub */}
+                        <p className="mt-8 max-w-md" style={{ fontSize: '15px', lineHeight: 1.85, color: 'rgba(244,239,230,0.55)' }}>
+                            Whether it's a question, a collaboration, or simply curiosity — we'd love to hear from you.
+                        </p>
+                    </motion.div>
+                </div>
+            </section>
 
-      {/* MAIN TWO-COLUMN SPLIT — LIGHT */}
-      <section data-tone="light" className="py-20 lg:py-28" style={{ background: CREAM }}>
-        <div className="max-w-[1400px] mx-auto px-8 lg:px-14">
-          <div className="grid grid-cols-1 lg:grid-cols-[45fr_55fr] gap-12 lg:gap-16 items-start">
-            {/* LEFT COLUMN: CONTACT DETAILS */}
-            <div className="flex flex-col gap-6 w-full">
-              
-              {/* TOP ROW: PHONE AND EMAIL CARDS */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 items-stretch">
-                {/* PHONE CARD */}
+            {/* ── MAIN SECTION — dark two-column ──────────────────────── */}
+            <section style={{ background: DARK_2 }} className="py-24 lg:py-32">
+                <div className="max-w-[1400px] mx-auto px-8 lg:px-14">
+                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-start">
+
+                        {/* LEFT — details */}
+                        <motion.div
+                            initial={{ opacity: 0, x: -24 }}
+                            whileInView={{ opacity: 1, x: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ duration: 0.9, ease }}
+                        >
+                            <div className="tracking-[0.42em] uppercase mb-5" style={{ fontSize: '10px', color: SAGE }}>
+                                — Find Us
+                            </div>
+                            <h2
+                                className="font-serif mb-14"
+                                style={{
+                                    fontSize: 'clamp(34px, 4.4vw, 58px)',
+                                    lineHeight: 1.05,
+                                    fontWeight: 300,
+                                    color: CREAM,
+                                    letterSpacing: '-0.015em',
+                                }}
+                            >
+                                We're always<br />
+                                <em style={{ fontStyle: 'italic', color: SAGE }}>close by.</em>
+                            </h2>
+
+                            {/* Contact detail rows */}
+                            <div className="flex flex-col gap-10">
+                                {contactDetails.map((item, i) => (
+                                    <motion.div
+                                        key={item.label}
+                                        initial={{ opacity: 0, y: 16 }}
+                                        whileInView={{ opacity: 1, y: 0 }}
+                                        viewport={{ once: true }}
+                                        transition={{ duration: 0.6, delay: i * 0.08, ease }}
+                                        className="flex items-start gap-6"
+                                        style={{ borderBottom: '1px solid rgba(244,239,230,0.07)', paddingBottom: '2.5rem' }}
+                                    >
+                                        {/* Icon circle */}
+                                        <div
+                                            className="flex-shrink-0 flex items-center justify-center"
+                                            style={{
+                                                width: 44,
+                                                height: 44,
+                                                borderRadius: '50%',
+                                                border: '1px solid rgba(139,149,121,0.3)',
+                                                background: 'rgba(139,149,121,0.07)',
+                                            }}
+                                        >
+                                            <item.icon size={17} strokeWidth={1.3} color={SAGE} />
+                                        </div>
+
+                                        <div>
+                                            <div className="tracking-[0.32em] uppercase mb-3" style={{ fontSize: '9px', color: SAGE }}>
+                                                {item.label}
+                                            </div>
+                                            {item.lines.map((line, j) =>
+                                                line.href ? (
+                                                    <a
+                                                        key={j}
+                                                        href={line.href}
+                                                        className="block transition-colors duration-300"
+                                                        style={{ fontSize: '15px', color: 'rgba(244,239,230,0.8)', lineHeight: 1.7, fontWeight: 300 }}
+                                                        onMouseEnter={(e) => (e.currentTarget.style.color = CREAM)}
+                                                        onMouseLeave={(e) => (e.currentTarget.style.color = 'rgba(244,239,230,0.8)')}
+                                                    >
+                                                        {line.text}
+                                                    </a>
+                                                ) : (
+                                                    <p key={j} style={{ fontSize: '14px', color: 'rgba(244,239,230,0.6)', lineHeight: 1.75, fontWeight: 300 }}>
+                                                        {line.text}
+                                                    </p>
+                                                )
+                                            )}
+                                        </div>
+                                    </motion.div>
+                                ))}
+                            </div>
+
+                            {/* Social row */}
+                            <div className="mt-10 flex items-center gap-5">
+                                <span className="tracking-[0.32em] uppercase mr-2" style={{ fontSize: '9px', color: 'rgba(244,239,230,0.35)' }}>Follow</span>
+                                <a
+                                    href="https://www.instagram.com/ryvive_roots/"
+                                    target="_blank"
+                                    rel="noreferrer"
+                                    className="flex items-center justify-center transition-all duration-300"
+                                    style={{
+                                        width: 38, height: 38, borderRadius: '50%',
+                                        border: '1px solid rgba(244,239,230,0.12)',
+                                        color: 'rgba(244,239,230,0.55)',
+                                    }}
+                                    onMouseEnter={(e) => { e.currentTarget.style.borderColor = SAGE; e.currentTarget.style.color = SAGE; }}
+                                    onMouseLeave={(e) => { e.currentTarget.style.borderColor = 'rgba(244,239,230,0.12)'; e.currentTarget.style.color = 'rgba(244,239,230,0.55)'; }}
+                                >
+                                    <Instagram size={15} strokeWidth={1.4} />
+                                </a>
+                            </div>
+                        </motion.div>
+
+                        {/* RIGHT — form panel */}
+                        <motion.div
+                            initial={{ opacity: 0, x: 24 }}
+                            whileInView={{ opacity: 1, x: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ duration: 0.9, ease, delay: 0.1 }}
+                            style={{
+                                background: 'rgba(244,239,230,0.04)',
+                                border: '1px solid rgba(244,239,230,0.08)',
+                                backdropFilter: 'blur(12px)',
+                                WebkitBackdropFilter: 'blur(12px)',
+                                borderRadius: '3px',
+                                padding: '48px',
+                            }}
+                        >
+                            <AnimatePresence mode="wait">
+                                {submitted ? (
+                                    <motion.div
+                                        key="success"
+                                        initial={{ opacity: 0, y: 16 }}
+                                        animate={{ opacity: 1, y: 0 }}
+                                        exit={{ opacity: 0 }}
+                                        transition={{ duration: 0.6, ease }}
+                                        className="flex flex-col items-center justify-center text-center py-16"
+                                    >
+                                        <CheckCircle2 size={40} strokeWidth={1.2} color={SAGE} style={{ marginBottom: 24 }} />
+                                        <div className="font-serif mb-4" style={{ fontSize: 'clamp(26px, 3vw, 36px)', color: CREAM, fontWeight: 300 }}>
+                                            Message received.
+                                        </div>
+                                        <p style={{ fontSize: '14px', color: 'rgba(244,239,230,0.55)', lineHeight: 1.85, maxWidth: 340 }}>
+                                            Thank you for reaching out. Our team will be in touch with you shortly.
+                                        </p>
+                                    </motion.div>
+                                ) : (
+                                    <motion.div
+                                        key="form"
+                                        initial={{ opacity: 0 }}
+                                        animate={{ opacity: 1 }}
+                                        exit={{ opacity: 0 }}
+                                        transition={{ duration: 0.4 }}
+                                    >
+                                        <div className="mb-10">
+                                            <div className="tracking-[0.42em] uppercase mb-4" style={{ fontSize: '10px', color: SAGE }}>
+                                                — Send a Message
+                                            </div>
+                                            <h2 className="font-serif" style={{ fontSize: 'clamp(28px, 3.2vw, 42px)', lineHeight: 1.1, color: CREAM, fontWeight: 300 }}>
+                                                Begin a <em style={{ fontStyle: 'italic', color: SAGE }}>dialogue.</em>
+                                            </h2>
+                                        </div>
+
+                                        <form onSubmit={onSubmit} className="flex flex-col gap-8">
+                                            {[
+                                                { key: 'name', label: 'Full Name', type: 'text' },
+                                                { key: 'email', label: 'Email Address', type: 'email' },
+                                                { key: 'subject', label: 'Subject', type: 'text' },
+                                            ].map(({ key, label, type }) => (
+                                                <div key={key}>
+                                                    <label style={formLabelStyle}>{label}</label>
+                                                    <input
+                                                        required
+                                                        type={type}
+                                                        value={form[key]}
+                                                        onChange={onChange(key)}
+                                                        style={formInputStyle}
+                                                        onFocus={(e) => (e.currentTarget.style.borderBottomColor = SAGE)}
+                                                        onBlur={(e) => (e.currentTarget.style.borderBottomColor = 'rgba(244,239,230,0.18)')}
+                                                    />
+                                                </div>
+                                            ))}
+
+                                            <div>
+                                                <label style={formLabelStyle}>Message</label>
+                                                <textarea
+                                                    required
+                                                    rows={4}
+                                                    value={form.message}
+                                                    onChange={onChange('message')}
+                                                    style={{ ...formInputStyle, resize: 'none', lineHeight: 1.75 }}
+                                                    onFocus={(e) => (e.currentTarget.style.borderBottomColor = SAGE)}
+                                                    onBlur={(e) => (e.currentTarget.style.borderBottomColor = 'rgba(244,239,230,0.18)')}
+                                                />
+                                            </div>
+
+                                            <div className="pt-2">
+                                                <motion.button
+                                                    type="submit"
+                                                    whileHover={{ y: -2 }}
+                                                    whileTap={{ scale: 0.98 }}
+                                                    transition={{ duration: 0.25 }}
+                                                    className="flex items-center gap-3 tracking-[0.26em] uppercase w-full justify-center"
+                                                    style={{
+                                                        fontSize: '11px',
+                                                        padding: '18px 32px',
+                                                        background: SAGE,
+                                                        color: DARK_2,
+                                                        border: `1px solid ${SAGE}`,
+                                                        borderRadius: '2px',
+                                                        cursor: 'pointer',
+                                                        fontWeight: 500,
+                                                        fontFamily: 'inherit',
+                                                        transition: 'background 0.3s, border-color 0.3s, box-shadow 0.3s',
+                                                    }}
+                                                    onMouseEnter={(e) => {
+                                                        e.currentTarget.style.background = CREAM;
+                                                        e.currentTarget.style.borderColor = CREAM;
+                                                        e.currentTarget.style.boxShadow = `0 12px 32px -8px rgba(139,149,121,0.35)`;
+                                                    }}
+                                                    onMouseLeave={(e) => {
+                                                        e.currentTarget.style.background = SAGE;
+                                                        e.currentTarget.style.borderColor = SAGE;
+                                                        e.currentTarget.style.boxShadow = 'none';
+                                                    }}
+                                                >
+                                                    Send Message <Send size={13} strokeWidth={1.5} />
+                                                </motion.button>
+                                            </div>
+                                        </form>
+                                    </motion.div>
+                                )}
+                            </AnimatePresence>
+                        </motion.div>
+
+                    </div>
+                </div>
+            </section>
+
+            {/* ── MAP BAND ──────────────────────────────────────────────── */}
+            <section style={{ background: DARK }} className="pt-0 pb-0">
                 <motion.div
-                  initial={{ opacity: 0, y: 16 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.6 }}
-                  whileHover={{ y: -4, boxShadow: '0 12px 24px -10px rgba(42,37,32,0.12)' }}
-                  className="p-8 transition-all duration-300 text-left relative overflow-hidden flex flex-col h-full"
-                  style={{ 
-                    background: CREAM_2, 
-                    border: `1.5px solid rgba(42,37,32,0.06)`,
-                    borderRadius: '2px'
-                  }}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.8, ease }}
+                    className="relative overflow-hidden"
+                    style={{ height: '420px' }}
                 >
-                  <div className="flex items-center gap-4 mb-5">
-                    <div className="flex items-center justify-center w-10 h-10 rounded-full" style={{ background: 'rgba(139,149,121,0.1)' }}>
-                      <Phone size={18} strokeWidth={1.3} color={SAGE_DARK}/>
-                    </div>
-                    <h3 className="tracking-[0.22em] uppercase" style={{ fontSize: '10px', color: SAGE_DARK, fontWeight: 600 }}>Phone</h3>
-                  </div>
-                  <div className="flex flex-col gap-2 font-serif mt-auto" style={{ fontSize: '18px', color: INK, fontWeight: 300, lineHeight: 1.4 }}>
-                    <a href="tel:+919076000468" className="hover:text-[#8B9579] transition-colors">+91 9076000468</a>
-                    <a href="tel:+919765600701" className="hover:text-[#8B9579] transition-colors">+91 97656 00701</a>
-                  </div>
-                </motion.div>
-
-                {/* EMAIL CARD */}
-                <motion.div
-                  initial={{ opacity: 0, y: 16 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.6, delay: 0.1 }}
-                  whileHover={{ y: -4, boxShadow: '0 12px 24px -10px rgba(42,37,32,0.12)' }}
-                  className="p-8 transition-all duration-300 text-left relative overflow-hidden flex flex-col h-full"
-                  style={{ 
-                    background: CREAM_2, 
-                    border: `1.5px solid rgba(42,37,32,0.06)`,
-                    borderRadius: '2px'
-                  }}
-                >
-                  <div className="flex items-center gap-4 mb-5">
-                    <div className="flex items-center justify-center w-10 h-10 rounded-full" style={{ background: 'rgba(139,149,121,0.1)' }}>
-                      <Mail size={18} strokeWidth={1.3} color={SAGE_DARK}/>
-                    </div>
-                    <h3 className="tracking-[0.22em] uppercase" style={{ fontSize: '10px', color: SAGE_DARK, fontWeight: 600 }}>Email</h3>
-                  </div>
-                  <div className="flex flex-col gap-2.5 font-serif mt-auto" style={{ fontSize: '15px', color: INK, fontWeight: 300 }}>
-                    
-                    <a href="mailto:customersupport@ryviveroots.com" className="hover:text-[#8B9579] transition-colors font-serif">customersupport@ryviveroots.com</a>
-                    <a href="mailto:management@ryviveroots.com" className="hover:text-[#8B9579] transition-colors font-serif">management@ryviveroots.com</a>
-                  </div>
-                </motion.div>
-              </div>
-
-              {/* SHOP LOCATION CARD */}
-              <motion.div
-                initial={{ opacity: 0, y: 16 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: 0.2 }}
-                whileHover={{ y: -4, boxShadow: '0 12px 24px -10px rgba(42,37,32,0.12)' }}
-                className="p-8 transition-all duration-300 text-left relative overflow-hidden"
-                style={{ 
-                  background: CREAM_2, 
-                  border: `1.5px solid rgba(42,37,32,0.06)`,
-                  borderRadius: '2px'
-                }}
-              >
-                <div className="flex items-center gap-4 mb-5">
-                  <div className="flex items-center justify-center w-10 h-10 rounded-full" style={{ background: 'rgba(139,149,121,0.1)' }}>
-                    <MapPin size={18} strokeWidth={1.3} color={SAGE_DARK}/>
-                  </div>
-                  <h3 className="tracking-[0.22em] uppercase" style={{ fontSize: '10px', color: SAGE_DARK, fontWeight: 600 }}>Shop Location</h3>
-                </div>
-                <div style={{ fontSize: '14px', color: INK, lineHeight: 1.8 }}>
-                  Shop No 01, Saraswati Bhuvan,<br />
-                  Near Roshan Automobile,<br />
-                  Phadke Cross Road,<br />
-                  Opp. Hotel Nav Gomantak,<br />
-                  Dombivli East,<br />
-                  Maharashtra 421201.
-                </div>
-              </motion.div>
-
-              {/* MAP SECTION */}
-              <motion.div 
-                id="map-section"
-                initial={{ opacity: 0, y: 16 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.7, delay: 0.3 }}
-                className="w-full relative overflow-hidden" 
-                style={{ 
-                  border: '1.5px solid rgba(42,37,32,0.06)',
-                  borderRadius: '2px',
-                  boxShadow: '0 20px 40px -20px rgba(42,37,32,0.08)'
-                }}
-              >
-                <iframe 
-                  title="Ryvive Roots Location Map"
-                  src="https://maps.google.com/maps?q=Shop%20No%2001,%20Saraswati%20Bhuvan,%20Near%20Roshan%20Automobile,%20Phadke%20Cross%20Road,%20Opp.%20Hotel%20Nav%20Gomantak,%20Dombivli%20East,%20Maharashtra%20421201&t=&z=16&ie=UTF8&iwloc=&output=embed" 
-                  width="100%" 
-                  height="340" 
-                  style={{ 
-                    border: 0, 
-                    filter: 'grayscale(0.9) contrast(1.1) invert(0.02)',
-                    display: 'block'
-                  }} 
-                  allowFullScreen="" 
-                  loading="lazy"
-                />
-              </motion.div>
-
-            </div>
-
-            {/* RIGHT COLUMN: CONTACT FORM */}
-            <div className="w-full">
-              <motion.div
-                initial={{ opacity: 0, y: 16 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.7 }}
-                className="p-8 sm:p-10 text-left h-full flex flex-col justify-center"
-                style={{ 
-                  background: CREAM_2, 
-                  border: `1.5px solid rgba(42,37,32,0.06)`,
-                  borderRadius: '2px',
-                  boxShadow: '0 20px 40px -20px rgba(42,37,32,0.06)'
-                }}
-              >
-                <div className="mb-10">
-                  <div className="tracking-[0.42em] uppercase mb-4" style={{ fontSize: '10px', color: SAGE_DARK, fontWeight: 600 }}>— Message Us</div>
-                  <h2 className="font-serif" style={{ fontSize: 'clamp(28px, 3.4vw, 42px)', lineHeight: 1.1, color: INK, fontWeight: 300 }}>
-                    Begin a <em style={{ fontStyle: 'italic' }}>conversation.</em>
-                  </h2>
-                </div>
-
-                {submitted ? (
-                  <motion.div 
-                    initial={{ opacity: 0, y: 12 }} 
-                    animate={{ opacity: 1, y: 0 }} 
-                    className="text-center py-16"
-                  >
-                    <div className="font-serif mb-4" style={{ fontSize: '28px', color: INK, fontWeight: 300 }}>
-                      Thank you.
-                    </div>
-                    <p style={{ fontSize: '14px', color: 'rgba(42,37,32,0.65)', lineHeight: 1.8 }}>
-                      Your message has been received. Our concierge team will be in touch with you shortly.
-                    </p>
-                  </motion.div>
-                ) : (
-                  <form onSubmit={onSubmit} className="flex flex-col gap-8">
-                    <div>
-                      <label style={labelStyle}>Name</label>
-                      <input 
-                        required 
-                        value={form.name} 
-                        onChange={onChange('name')} 
-                        style={inputStyle}
-                        onFocus={onFocus}
-                        onBlur={onBlur}
-                      />
-                    </div>
-                    <div>
-                      <label style={labelStyle}>Email</label>
-                      <input 
-                        type="email" 
-                        required 
-                        value={form.email} 
-                        onChange={onChange('email')} 
-                        style={inputStyle}
-                        onFocus={onFocus}
-                        onBlur={onBlur}
-                      />
-                    </div>
-                    <div>
-                      <label style={labelStyle}>Subject</label>
-                      <input 
-                        required 
-                        value={form.subject} 
-                        onChange={onChange('subject')} 
-                        style={inputStyle}
-                        onFocus={onFocus}
-                        onBlur={onBlur}
-                      />
-                    </div>
-                    <div>
-                      <label style={labelStyle}>Message</label>
-                      <textarea 
-                        required 
-                        rows={4} 
-                        value={form.message} 
-                        onChange={onChange('message')} 
-                        style={{ ...inputStyle, resize: 'none' }}
-                        onFocus={onFocus}
-                        onBlur={onBlur}
-                      />
-                    </div>
-                    
-                    <div className="mt-4">
-                      <motion.button 
-                        type="submit" 
-                        whileTap={{ scale: 0.98 }}
-                        className="px-10 py-4 tracking-[0.24em] uppercase transition-all duration-300 flex items-center justify-center gap-3 w-full sm:w-auto" 
-                        style={{ 
-                          fontSize: '11px', 
-                          background: INK, 
-                          color: CREAM, 
-                          border: `1px solid ${INK}`, 
-                          borderRadius: '1px',
-                          cursor: 'pointer'
-                        }} 
-                        onMouseEnter={(e) => { 
-                          e.currentTarget.style.background = SAGE_DARK; 
-                          e.currentTarget.style.borderColor = SAGE_DARK; 
-                        }} 
-                        onMouseLeave={(e) => { 
-                          e.currentTarget.style.background = INK; 
-                          e.currentTarget.style.borderColor = INK; 
+                    {/* Grayscale tinted map overlay */}
+                    <div
+                        className="absolute inset-0 z-10 pointer-events-none"
+                        style={{ background: 'rgba(20,17,15,0.18)', mixBlendMode: 'multiply' }}
+                    />
+                    <iframe
+                        title="Ryvive Roots Location"
+                        src="https://maps.google.com/maps?q=Shop%20No%2001,%20Saraswati%20Bhuvan,%20Near%20Roshan%20Automobile,%20Phadke%20Cross%20Road,%20Opp.%20Hotel%20Nav%20Gomantak,%20Dombivli%20East,%20Maharashtra%20421201&t=&z=16&ie=UTF8&iwloc=&output=embed"
+                        width="100%"
+                        height="100%"
+                        style={{
+                            border: 0,
+                            display: 'block',
+                            filter: 'grayscale(1) contrast(1.1) brightness(0.88)',
                         }}
-                      >
-                        Send Now <Send size={12} strokeWidth={1.5} />
-                      </motion.button>
-                    </div>
-                  </form>
-                )}
-              </motion.div>
-            </div>
+                        allowFullScreen=""
+                        loading="lazy"
+                    />
 
-          </div>
+                    {/* Address overlay tag */}
+                    <motion.div
+                        initial={{ opacity: 0, y: 8 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.6, delay: 0.3, ease }}
+                        className="absolute bottom-6 left-6 z-20"
+                        style={{
+                            background: 'rgba(20,17,15,0.88)',
+                            backdropFilter: 'blur(12px)',
+                            border: '1px solid rgba(244,239,230,0.1)',
+                            borderRadius: '3px',
+                            padding: '16px 22px',
+                            maxWidth: 280,
+                        }}
+                    >
+                        <div className="tracking-[0.34em] uppercase mb-2" style={{ fontSize: '9px', color: SAGE }}>
+                            Our Location
+                        </div>
+                        <p style={{ fontSize: '12px', color: 'rgba(244,239,230,0.75)', lineHeight: 1.75 }}>
+                            Shop No 01, Saraswati Bhuvan,<br />
+                            Phadke Cross Road, Dombivli East,<br />
+                            Maharashtra 421201.
+                        </p>
+                    </motion.div>
+                </motion.div>
+            </section>
+
+            {/* ── CLOSING QUOTE ─────────────────────────────────────────── */}
+            <section className="py-24 lg:py-32 text-center" style={{ background: DARK_2 }}>
+                <div className="max-w-[640px] mx-auto px-8">
+                    <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.9, ease }}
+                    >
+                        <div
+                            className="w-8 h-px mx-auto mb-8"
+                            style={{ background: SAGE, opacity: 0.5 }}
+                        />
+                        <p
+                            className="font-serif"
+                            style={{
+                                fontSize: 'clamp(20px, 2.6vw, 30px)',
+                                color: 'rgba(244,239,230,0.65)',
+                                lineHeight: 1.5,
+                                fontWeight: 300,
+                                fontStyle: 'italic',
+                            }}
+                        >
+                            "Real food, real people —<br />
+                            <em style={{ color: SAGE }}>real conversations.</em>"
+                        </p>
+                    </motion.div>
+                </div>
+            </section>
+
         </div>
-      </section>
-    </div>);
+    );
 }
+
+// ─── Static style objects ─────────────────────────────────────────────────────
+
+const formLabelStyle = {
+    display: 'block',
+    fontSize: '9px',
+    letterSpacing: '0.34em',
+    textTransform: 'uppercase',
+    color: 'rgba(244,239,230,0.45)',
+    marginBottom: '10px',
+    fontWeight: 500,
+};
+
+const formInputStyle = {
+    width: '100%',
+    background: 'transparent',
+    border: 'none',
+    borderBottom: '1px solid rgba(244,239,230,0.18)',
+    padding: '12px 0',
+    fontSize: '15px',
+    color: 'rgba(244,239,230,0.9)',
+    outline: 'none',
+    fontFamily: 'inherit',
+    fontWeight: 300,
+    transition: 'border-color 0.3s ease',
+};
