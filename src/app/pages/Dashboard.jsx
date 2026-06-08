@@ -832,7 +832,7 @@ export default function Dashboard() {
       `}</style>
       <div className="flex pt-[72px] min-h-screen items-start relative">
         {/* ── MOBILE NAV TRIGGER ─────────────────────────────────────────── */}
-        <button type="button" onClick={() => setMobileNavOpen(true)} className="lg:hidden fixed top-1/2 -translate-y-1/2 left-0 z-40 flex items-center justify-center w-7 h-14 rounded-r-full" style={{
+        <button type="button" onClick={() => setMobileNavOpen(true)} className="lg:hidden fixed top-[80px] left-0 z-40 flex items-center justify-center w-7 h-14 rounded-r-full" style={{
             background: DARK,
             color: CREAM,
             border: `1px solid rgba(244,239,230,0.18)`,
