@@ -9,10 +9,15 @@ import Career from './pages/Career';
 import Contact from './pages/Contact';
 import Login from './pages/Login';
 import Dashboard from './pages/Dashboard';
+import AdminDashboard from './pages/AdminDashboard';
 export const router = createBrowserRouter([
     {
         path: '/login',
         Component: Login,
+    },
+    {
+        path: '/admin',
+        Component: AdminDashboard,
     },
     {
         path: '/',
