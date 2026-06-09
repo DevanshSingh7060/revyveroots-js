@@ -412,7 +412,7 @@ export default function AdminDashboard() {
       </header>
 
       {/* MOBILE NAV TRIGGER */}
-      <button type="button" onClick={() => setMobileNavOpen(true)} className="lg:hidden" aria-label="Open admin menu" style={{ position: 'fixed', top: '50%', transform: 'translateY(-50%)', left: 0, zIndex: 150, display: 'flex', alignItems: 'center', justifyContent: 'center', width: 28, height: 56, borderRadius: '0 999px 999px 0', background: DARK_2, color: CREAM, border: `1px solid rgba(244,239,230,0.18)`, borderLeft: 'none', boxShadow: '0 4px 12px -4px rgba(20,17,15,0.35)', cursor: 'pointer' }}>
+      <button type="button" onClick={() => setMobileNavOpen(true)} className="lg:hidden" aria-label="Open admin menu" style={{ position: 'fixed', top: '80px', left: 0, zIndex: 150, display: 'flex', alignItems: 'center', justifyContent: 'center', width: 28, height: 56, borderRadius: '0 999px 999px 0', background: DARK_2, color: CREAM, border: `1px solid rgba(244,239,230,0.18)`, borderLeft: 'none', boxShadow: '0 4px 12px -4px rgba(20,17,15,0.35)', cursor: 'pointer' }}>
         <ChevronRight size={16} strokeWidth={1.8} />
       </button>
 
