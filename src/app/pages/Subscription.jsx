@@ -1,6 +1,6 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { Check, ArrowRight, ArrowLeft, ChefHat, Truck, UtensilsCrossed, CreditCard, Smartphone, Landmark, Wallet, ChevronDown, X, } from 'lucide-react';
+import { Check, ArrowRight, ArrowLeft, ChefHat, Truck, UtensilsCrossed, CreditCard, Smartphone, Landmark, Wallet, ChevronDown, X, ChevronLeft, ChevronRight } from 'lucide-react';
 import { ImageWithFallback } from '../components/figma/ImageWithFallback';
 import { CREAM, CREAM_2, DARK, DARK_2, INK, SAGE, SAGE_DARK } from '../theme';
 import landing1 from '../images/Landing-1.jpeg';
@@ -92,6 +92,26 @@ const steps = [
   { n: 4, label: 'Review' },
   { n: 5, label: 'Payment' },
 ];
+const subscriptionTestimonials = [
+  {
+    rating: "★★★★★",
+    text: "Meals arrive fresh every day and have completely changed my routine. The packaging is clean and temperature-controlled.",
+    name: "Aarav Mehta",
+    label: "Verified Subscriber"
+  },
+  {
+    rating: "★★★★★",
+    text: "Finally found a meal subscription that actually tastes homemade. Every dish is seasoned perfectly without feeling heavy.",
+    name: "Riya Sen",
+    label: "Verified Subscriber"
+  },
+  {
+    rating: "★★★★★",
+    text: "The delivery schedule is reliable and the food quality is exceptional. Customer service is also incredibly accommodating.",
+    name: "Kabir Malhotra",
+    label: "Verified Subscriber"
+  }
+];
 const inputStyle = {
   width: '100%',
   background: 'transparent',
@@ -120,6 +140,34 @@ const labelStyle = {
 const ease = [0.22, 1, 0.36, 1];
 export default function Subscription() {
   const [step, setStep] = useState(1);
+  // Testimonials sliding state
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [isHovered, setIsHovered] = useState(false);
+  const visibleCards = 1;
+  // Autoplay Slider - Slides one by one with a 2800ms delay
+  useEffect(() => {
+    if (isHovered)
+      return;
+    const interval = setInterval(() => {
+      setCurrentIndex((prev) => {
+        const maxIndex = subscriptionTestimonials.length - visibleCards;
+        return prev >= maxIndex ? 0 : prev + 1;
+      });
+    }, 2800);
+    return () => clearInterval(interval);
+  }, [isHovered]);
+  const handleNextTestimonial = () => {
+    setCurrentIndex((prev) => {
+      const maxIndex = subscriptionTestimonials.length - visibleCards;
+      return prev >= maxIndex ? 0 : prev + 1;
+    });
+  };
+  const handlePrevTestimonial = () => {
+    setCurrentIndex((prev) => {
+      const maxIndex = subscriptionTestimonials.length - visibleCards;
+      return prev === 0 ? maxIndex : prev - 1;
+    });
+  };
   const [selectedPlan, setSelectedPlan] = useState('gold');
   const [durations, setDurations] = useState({
     silver: 1,
@@ -151,7 +199,9 @@ export default function Subscription() {
   const nextStepAndScroll = () => {
     setStep((s) => Math.min(5, s + 1));
     setTimeout(() => {
-      const element = document.getElementById('subscription-main-panel');
+      const isMobile = window.innerWidth < 768;
+      const targetId = isMobile ? 'subscription-journey-section' : 'subscription-main-panel';
+      const element = document.getElementById(targetId);
       if (element) {
         element.scrollIntoView({ behavior: 'smooth', block: 'start' });
       }
@@ -160,7 +210,9 @@ export default function Subscription() {
   const backStepAndScroll = () => {
     setStep((s) => Math.max(1, s - 1));
     setTimeout(() => {
-      const element = document.getElementById('subscription-main-panel');
+      const isMobile = window.innerWidth < 768;
+      const targetId = isMobile ? 'subscription-journey-section' : 'subscription-main-panel';
+      const element = document.getElementById(targetId);
       if (element) {
         element.scrollIntoView({ behavior: 'smooth', block: 'start' });
       }
@@ -205,7 +257,7 @@ export default function Subscription() {
     <section data-tone="light" className="px-5 sm:px-8 lg:px-14 pt-10 lg:pt-16 pb-20 lg:pb-32">
       <div className="max-w-[1520px] mx-auto grid lg:grid-cols-[minmax(240px,29%)_minmax(0,71%)] gap-4 lg:gap-5 xl:gap-6">
         {/* LEFT — vertical step rail (mobile + desktop) */}
-        <aside className="relative w-full mb-8 lg:sticky lg:top-[100px] self-start">
+        <aside id="subscription-journey-section" className="relative w-full mb-8 lg:sticky lg:top-[100px] self-start" style={{ scrollMarginTop: '100px' }}>
           <div className="px-3 py-2 lg:p-8" style={{
             background: 'rgba(244,239,230,0.94)',
             backdropFilter: 'blur(14px)',
@@ -304,7 +356,7 @@ export default function Subscription() {
       </div>
     </section>
 
-    <section className="px-8 lg:px-14 py-20 lg:py-24 relative overflow-hidden" style={{
+    <section className="px-8 lg:px-14 py-14 lg:py-16 relative overflow-hidden" style={{
       background: CREAM_2,
     }} data-tone="light">
       {/* Subtle Luxury Visual Overlays and Gradients */}
@@ -321,7 +373,7 @@ export default function Subscription() {
       </div>
 
       <div className="max-w-[1400px] mx-auto relative z-10">
-        <div className="text-center mb-14 lg:mb-16">
+        <div className="text-center mb-10 lg:mb-12">
           <p className="uppercase tracking-[0.28em] mb-4" style={{
             color: SAGE_DARK,
             fontSize: '11px',
@@ -374,17 +426,17 @@ export default function Subscription() {
             ].map((item, index) => {
               const Icon = item.icon;
               return (<motion.div key={index} whileHover={{
-                y: -8,
+                y: -6,
                 scale: 1.015,
-                boxShadow: '0 25px 50px -20px rgba(14,41,27,0.18), 0 0 0 1px rgba(255,255,255,0.95) inset',
+                boxShadow: '0 20px 40px -16px rgba(14,41,27,0.14), 0 0 0 1px rgba(255,255,255,0.95) inset',
                 borderColor: 'rgba(107,117,96,0.35)'
-              }} whileTap={{ y: -4, scale: 1.01 }} transition={{ duration: 0.45, ease }} className="relative overflow-hidden" style={{
-                minHeight: '300px',
-                padding: '24px 22px 22px',
-                borderRadius: '14px',
+              }} whileTap={{ y: -3, scale: 1.01 }} transition={{ duration: 0.45, ease }} className="relative overflow-hidden" style={{
+                minHeight: '235px',
+                padding: '20px 20px 18px',
+                borderRadius: '12px',
                 background: 'rgba(248,244,237,0.95)',
                 border: '1px solid rgba(107,117,96,0.16)',
-                boxShadow: '0 20px 45px -24px rgba(14,41,27,0.12), 0 0 0 1px rgba(255,255,255,0.7) inset',
+                boxShadow: '0 15px 35px -20px rgba(14,41,27,0.1), 0 0 0 1px rgba(255,255,255,0.7) inset',
                 backdropFilter: 'blur(8px)',
                 transitionProperty: 'transform, box-shadow, border-color',
               }}>
@@ -394,62 +446,63 @@ export default function Subscription() {
                 </div>
 
                 <div className="relative z-10 flex h-full flex-col">
-                  <div className="flex items-start justify-between gap-4 mb-7">
+                  <div className="flex items-start justify-between gap-4 mb-4">
                     <div>
                       <div className="font-serif" style={{
-                        fontSize: 'clamp(42px, 5.8vw, 72px)',
+                        fontSize: 'clamp(28px, 3.8vw, 48px)',
                         lineHeight: 0.9,
                         color: SAGE_DARK,
-                        opacity: 0.22,
+                        opacity: 0.75,
                         letterSpacing: '-0.04em',
+                        fontWeight: 600,
                       }}>
                         {item.number}
                       </div>
-                      <div className="mt-4" style={{
-                        width: '48px',
+                      <div className="mt-2" style={{
+                        width: '36px',
                         height: '1px',
                         background: `linear-gradient(90deg, ${SAGE} 0%, ${SAGE_DARK} 100%)`,
-                        opacity: 0.7,
+                        opacity: 0.8,
                       }} />
                     </div>
 
                     {/* Refined Icon Visibility with SAGE colors */}
                     <div className="flex items-center justify-center transition-colors duration-300" style={{
-                      width: '54px',
-                      height: '54px',
+                      width: '48px',
+                      height: '48px',
                       borderRadius: '999px',
                       background: 'rgba(107,117,96,0.06)',
                       border: '1px solid rgba(107,117,96,0.15)',
                     }}>
-                      <Icon size={21} strokeWidth={1.35} color={SAGE_DARK} />
+                      <Icon size={24} strokeWidth={1.35} color={SAGE_DARK} />
                     </div>
                   </div>
 
                   <h3 className="font-serif" style={{
                     color: INK,
-                    fontSize: 'clamp(22px, 2.6vw, 30px)',
-                    lineHeight: 1.08,
-                    marginBottom: '12px',
-                    fontWeight: 300,
+                    fontSize: 'clamp(18px, 2.2vw, 24px)',
+                    lineHeight: 1.1,
+                    marginBottom: '8px',
+                    fontWeight: 600,
                   }}>
                     {item.title}
                   </h3>
 
                   <p style={{
                     color: 'rgba(28,24,20,0.76)',
-                    fontSize: '15px',
-                    lineHeight: 1.8,
-                    marginBottom: '22px',
-                    maxWidth: '27ch',
+                    fontSize: '14px',
+                    lineHeight: 1.65,
+                    marginBottom: '12px',
+                    maxWidth: '24ch',
                   }}>
                     {item.desc}
                   </p>
 
-                  <div className="mt-auto flex items-center justify-between gap-4 pt-5" style={{ borderTop: '1px solid rgba(28,24,20,0.08)' }}>
+                  <div className="mt-auto flex items-center justify-between gap-4 pt-3.5" style={{ borderTop: '1px solid rgba(28,24,20,0.08)' }}>
                     <div style={{ fontSize: '10px', letterSpacing: '0.3em', textTransform: 'uppercase', color: 'rgba(28,24,20,0.52)' }}>
 
                     </div>
-                    <div style={{ width: '32px', height: '1px', background: 'rgba(28,24,20,0.22)' }} />
+                    <div style={{ width: '24px', height: '1px', background: 'rgba(28,24,20,0.22)' }} />
                   </div>
                 </div>
               </motion.div>);
@@ -459,12 +512,131 @@ export default function Subscription() {
       </div>
     </section>
 
-    {/* CLOSING */}
-    <section className="py-16 lg:py-24 text-center" style={{ background: DARK_2 }}>
-      <div className="max-w-[680px] mx-auto px-6">
-        <p style={{ fontSize: '13px', color: 'rgba(244,239,230,0.55)', lineHeight: 1.85, letterSpacing: '0.04em' }}>
-          Pause or cancel any cycle. Memberships renew quietly each month — no contracts, only care.
-        </p>
+    {/* SUBSCRIBER TESTIMONIALS SECTION — DARK LUXURY (MATCHES HOMEPAGE DESIGN SYSTEM EXACTLY IN STRUCTURE, BUT WITH SUBTLE ELEVATED DARK PANELS) */}
+    <section 
+      data-tone="dark" 
+      className="py-10 lg:py-12 relative overflow-hidden" 
+      style={{ background: '#0D0A09' }}
+      onMouseEnter={() => setIsHovered(true)} 
+      onMouseLeave={() => setIsHovered(false)}
+    >
+      <div className="max-w-[1100px] mx-auto px-8 lg:px-14 relative z-10">
+        {/* Section Header */}
+        <div className="text-center mb-6 lg:mb-8 relative">
+          <div className="tracking-[0.42em] uppercase mb-5" style={{ fontSize: '11px', color: SAGE, fontWeight: 600 }}>— Voices</div>
+          <h2 className="font-serif" style={{ fontSize: 'clamp(30px, 3.5vw, 46px)', lineHeight: 1.1, color: CREAM, fontWeight: 300 }}>
+            SUBSCRIBER DIARIES
+          </h2>
+        </div>
+
+        {/* Testimonials Carousel Track Container with swipe controls */}
+        <div className="relative w-full max-w-2xl mx-auto overflow-hidden py-2">
+          <motion.div 
+            className="flex gap-12 items-stretch" 
+            animate={{ x: `calc(-${currentIndex} * (100% + 48px) / ${visibleCards})` }} 
+            transition={{ type: "spring", stiffness: 90, damping: 18 }} 
+            onPanEnd={(event, info) => {
+              const threshold = 50;
+              if (info.offset.x < -threshold) {
+                handleNextTestimonial();
+              }
+              else if (info.offset.x > threshold) {
+                handlePrevTestimonial();
+              }
+            }}
+          >
+            {subscriptionTestimonials.map((t, idx) => (
+              <div 
+                key={idx} 
+                className="flex-shrink-0 flex flex-col justify-between text-left" 
+                style={{
+                  width: `calc((100% - ${(visibleCards - 1) * 48}px) / ${visibleCards})`,
+                  background: '#13100E',
+                  border: '1px solid rgba(244, 239, 230, 0.04)',
+                  borderRadius: '3px',
+                  padding: '36px 36px 32px',
+                  boxShadow: '0 16px 40px -10px rgba(0,0,0,0.35)',
+                }}
+              >
+                {/* Testimonial Quote Text in Warm Ivory (matching homepage styling) */}
+                <div className="font-serif mb-6" style={{ fontSize: '22px', lineHeight: 1.6, color: CREAM, fontWeight: 300, fontStyle: 'italic' }}>
+                  “{t.text}”
+                </div>
+                
+                {/* Testimonial Divider & Client Name */}
+                <div className="pt-4" style={{ borderTop: '1px solid rgba(244,239,230,0.08)' }}>
+                  <div style={{ fontSize: '13px', color: '#FFFFFF', letterSpacing: '0.04em', fontWeight: 600 }}>{t.name}</div>
+                  <div className="tracking-[0.22em] uppercase mt-1" style={{ fontSize: '10px', color: SAGE, fontWeight: 500 }}>{t.label}</div>
+                </div>
+              </div>
+            ))}
+          </motion.div>
+        </div>
+
+        {/* Left/Right Navigation and Autoplay Indicators */}
+        <div className="flex items-center justify-center gap-6 mt-6">
+          {/* Left Arrow Button */}
+          <button 
+            onClick={handlePrevTestimonial} 
+            className="p-3 rounded-full border transition-all duration-300 group cursor-pointer" 
+            style={{
+              borderColor: 'rgba(244, 239, 230, 0.15)',
+              background: 'rgba(244, 239, 230, 0.01)',
+              backdropFilter: 'blur(8px)',
+              borderWidth: '1px'
+            }} 
+            onMouseEnter={(e) => {
+              e.currentTarget.style.background = 'rgba(244, 239, 230, 0.06)';
+              e.currentTarget.style.borderColor = 'rgba(244, 239, 230, 0.3)';
+            }} 
+            onMouseLeave={(e) => {
+              e.currentTarget.style.background = 'rgba(244, 239, 230, 0.01)';
+              e.currentTarget.style.borderColor = 'rgba(244, 239, 230, 0.15)';
+            }}
+            aria-label="Previous testimonial"
+          >
+            <ChevronLeft size={16} style={{ color: CREAM }}/>
+          </button>
+          
+          {/* Dynamic Slider Pagination Dots */}
+          <div className="flex items-center gap-2">
+            {Array.from({ length: subscriptionTestimonials.length - visibleCards + 1 }).map((_, index) => (
+              <button 
+                key={index} 
+                onClick={() => setCurrentIndex(index)} 
+                className="h-1.5 rounded-full transition-all duration-500 cursor-pointer" 
+                style={{
+                  width: currentIndex === index ? '18px' : '6px',
+                  background: currentIndex === index ? SAGE : 'rgba(244, 239, 230, 0.15)'
+                }}
+                aria-label={`Go to slide ${index + 1}`}
+              />
+            ))}
+          </div>
+
+          {/* Right Arrow Button */}
+          <button 
+            onClick={handleNextTestimonial} 
+            className="p-3 rounded-full border transition-all duration-300 group cursor-pointer" 
+            style={{
+              borderColor: 'rgba(244, 239, 230, 0.15)',
+              background: 'rgba(244, 239, 230, 0.01)',
+              backdropFilter: 'blur(8px)',
+              borderWidth: '1px'
+            }} 
+            onMouseEnter={(e) => {
+              e.currentTarget.style.background = 'rgba(244, 239, 230, 0.06)';
+              e.currentTarget.style.borderColor = 'rgba(244, 239, 230, 0.3)';
+            }} 
+            onMouseLeave={(e) => {
+              e.currentTarget.style.background = 'rgba(244, 239, 230, 0.01)';
+              e.currentTarget.style.borderColor = 'rgba(244, 239, 230, 0.15)';
+            }}
+            aria-label="Next testimonial"
+          >
+            <ChevronRight size={16} style={{ color: CREAM }}/>
+          </button>
+        </div>
       </div>
     </section>
   </div>);

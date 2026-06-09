@@ -4,6 +4,7 @@ import { ChevronLeft, ChevronRight, ShieldCheck, Sparkles, Leaf, Calendar, Clock
 import { useState, useEffect } from 'react';
 // Images
 import heroImage from "@/app/images/Avocado-Shake.png";
+import heroImageMobile from "@/app/images/Avocado-Shake-vertical.jpg";
 import landing1 from "@/app/images/Landing-1.jpeg";
 import landing2 from "@/app/images/Landing-2.jpeg";
 import story1 from "@/app/images/Story-1.JPG";
@@ -129,39 +130,71 @@ export default function Home() {
     };
     return (<>
       {/* HERO — DARK (ORIGINAL VISUAL DESIGN PRESERVED EXACTLY) */}
-      <section className="relative min-h-screen flex items-center overflow-hidden" style={{ background: DARK_2 }}>
+      <section className="relative min-h-screen flex items-start md:items-center overflow-hidden" style={{ background: DARK_2 }}>
         <div className="absolute inset-0">
-          <ImageWithFallback src={heroImage} alt="Hero" className="w-full h-full object-cover"/>
+          {/* Desktop Hero Image */}
+          <div className="hidden md:block absolute inset-0">
+            <ImageWithFallback src={heroImage} alt="Hero" className="w-full h-full object-cover"/>
+          </div>
+          {/* Mobile Hero Image */}
+          <div className="block md:hidden absolute inset-0">
+            <ImageWithFallback src={heroImageMobile} alt="Hero" className="w-full h-full object-cover"/>
+          </div>
           <div className="absolute inset-0" style={{ background: 'linear-gradient(180deg, rgba(20,17,15,0.55) 0%, rgba(20,17,15,0.4) 50%, rgba(20,17,15,0.95) 100%)' }}/>
         </div>
 
-        <div className="relative z-10 max-w-[1400px] mx-auto px-8 lg:px-14 w-full pt-32">
+        <div className="relative z-10 max-w-[1400px] mx-auto px-8 lg:px-14 w-full pt-[120px] md:pt-32">
           <motion.div initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1, ease: 'easeOut' }} className="max-w-3xl">
             {/* Eyebrow Text */}
-            <div className="tracking-[0.42em] uppercase mb-10 flex items-center gap-4" style={{ fontSize: '11px', color: CREAM, fontWeight: 600 }}>
+            <div className="tracking-[0.42em] uppercase mb-6 md:mb-10 flex items-center gap-4" style={{ fontSize: '11px', color: CREAM, fontWeight: 600 }}>
               <span style={{ width: '36px', height: '1px', background: CREAM, display: 'inline-block' }}/>
               CRAFTED FOR BALANCE, FRESHNESS, AND FLAVOUR.
             </div>
             
             {/* Main Heading */}
-            <h1 className="mb-10 text-left" style={{ fontFamily: "'Bodoni Moda', Georgia, serif", fontSize: 'clamp(32px, 4.5vw, 62px)', lineHeight: 1.04, letterSpacing: '-0.012em', color: CREAM, fontWeight: 700 }}>
+            <h1 className="mb-6 md:mb-10 text-left" style={{ fontFamily: "'Bodoni Moda', Georgia, serif", fontSize: 'clamp(32px, 4.5vw, 62px)', lineHeight: 1.04, letterSpacing: '-0.012em', color: CREAM, fontWeight: 700 }}>
               Welcome to<br />
               <span style={{ fontFamily: "'Bodoni Moda', Georgia, serif", fontStyle: 'normal', color: SAGE, fontWeight: 700, fontSize: 'clamp(54px, 8vw, 108px)', textTransform: 'uppercase' }}>Ryvive Roots</span>
             </h1>
             
             {/* Subheading */}
-            <p className="mb-14 max-w-xl text-left" style={{ fontSize: '15px', lineHeight: 1.85, color: 'rgba(244,239,230,0.65)' }}>
+            <p className="mb-8 md:mb-14 max-w-xl text-left" style={{ fontSize: '15px', lineHeight: 1.85, color: 'rgba(244,239,230,0.65)' }}>
               Live better, relive your natural energy, and believe in the power of authentic food.
             </p>
             
             {/* CTA Buttons */}
             <div className="flex flex-wrap items-center gap-8">
-              <Link to="/subscription" className="tracking-[0.22em] uppercase transition-colors" style={{ fontSize: '11px', color: 'rgba(244,239,230,0.7)' }}>
+              {/* Desktop CTA */}
+              <Link to="/subscription" className="hidden md:inline-block tracking-[0.22em] uppercase transition-colors" style={{ fontSize: '11px', color: 'rgba(244,239,230,0.7)' }}>
                 Start Subscription →
               </Link>
             </div>
 
           </motion.div>
+        </div>
+
+        {/* Mobile Glassmorphism CTA */}
+        <div className="absolute bottom-20 left-1/2 -translate-x-1/2 z-10 block md:hidden">
+          <Link 
+            to="/subscription" 
+            className="inline-flex items-center justify-center px-10 tracking-[0.22em] uppercase transition-all duration-300 hover:bg-white/20 active:scale-[0.98]" 
+            style={{ 
+              fontSize: '11px', 
+              color: '#ffffff',
+              background: 'rgba(255,255,255,0.10)',
+              border: '1px solid rgba(255,255,255,0.18)',
+              backdropFilter: 'blur(16px)',
+              WebkitBackdropFilter: 'blur(16px)',
+              boxShadow: '0 8px 30px rgba(0,0,0,0.18)',
+              borderRadius: '999px',
+              height: '54px',
+              width: 'max-content',
+              whiteSpace: 'nowrap',
+              fontWeight: 600
+            }}
+          >
+            Start Subscription →
+          </Link>
         </div>
 
         <motion.button 
@@ -332,7 +365,7 @@ export default function Home() {
 
               <div className="grid grid-cols-3 gap-8 mb-8 pt-10" style={{ borderTop: '1px solid rgba(244,239,230,0.15)' }}>
                 {[
-            { label: 'Farm Sourced', v: '100', s: '%' },
+            { label: 'Organic', v: '100', s: '%' },
             { label: 'Preservatives', v: '00', s: '%' },
             { label: 'Daily Prep', v: '24', s: 'h' },
         ].map((stat, i) => (<div key={i} className="text-left">

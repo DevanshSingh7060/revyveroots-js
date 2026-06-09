@@ -10,10 +10,10 @@ const benefits = [
     { icon: Award, title: 'A Considered Brand', desc: 'Design, identity, and recipes — every detail curated to the last gram.' },
 ];
 const details = [
-    { label: 'Investment', value: '₹1.2 – 1.8 Cr' },
-    { label: 'Area Required', value: '900 – 1,400 sq.ft' },
-    { label: 'Payback Period', value: '24 – 32 months' },
-    { label: 'Royalty', value: '6% of revenue' },
+    { label: 'Operational Support', value: 'End-to-end onboarding and launch guidance.' },
+    { label: 'Training Program', value: 'Comprehensive staff and operations training.' },
+    { label: 'Marketing Assistance', value: 'Brand, digital and local marketing support.' },
+    { label: 'Relationship Team', value: 'Continuous guidance for long-term growth.' },
 ];
 export default function Franchise() {
     const [form, setForm] = useState({ name: '', email: '', phone: '', city: '', capacity: '', message: '' });
@@ -88,25 +88,25 @@ export default function Franchise() {
         </div>
       </section>
 
-      {/* INVESTMENT — DARK */}
+      {/* WHAT YOU RECEIVE — DARK */}
       <section className="py-28 lg:py-36" style={{ background: DARK }}>
         <div className="max-w-[1300px] mx-auto px-8 lg:px-14">
           <div className="grid lg:grid-cols-2 gap-16 lg:gap-24 items-center">
             <motion.div initial={{ opacity: 0, x: -40 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}>
-              <div className="tracking-[0.42em] uppercase mb-6" style={{ fontSize: '11px', color: CREAM, fontWeight: 600 }}>— Investment</div>
+              <div className="tracking-[0.42em] uppercase mb-6" style={{ fontSize: '11px', color: CREAM, fontWeight: 600 }}>— Support</div>
               <h2 className="font-serif mb-8" style={{ fontSize: 'clamp(30px, 3.6vw, 48px)', lineHeight: 1.1, color: CREAM, fontWeight: 300 }}>
-                A transparent <em style={{ fontStyle: 'italic', color: SAGE }}>commitment.</em>
+                A comprehensive <em style={{ fontStyle: 'italic', color: SAGE }}>partnership.</em>
               </h2>
               <p style={{ fontSize: '14px', color: 'rgba(244,239,230,0.65)', lineHeight: 1.85, maxWidth: '460px' }}>
-                Numbers are a starting point — our conversation goes far deeper. We assess every partner on intention, location, and long view.
+                We believe in setting up our partners for success from day one. We provide complete operational, training, and marketing support to ensure alignment with our standards.
               </p>
             </motion.div>
 
             <motion.div initial={{ opacity: 0, x: 40 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}>
               <div className="grid grid-cols-2 gap-px" style={{ background: 'rgba(244,239,230,0.12)' }}>
                 {details.map((d) => (<div key={d.label} className="p-8" style={{ background: DARK }}>
-                    <div className="tracking-[0.3em] uppercase mb-4" style={{ fontSize: '10px', color: CREAM, fontWeight: 600 }}>{d.label}</div>
-                    <div className="font-serif" style={{ fontSize: '26px', color: CREAM, fontWeight: 300 }}>{d.value}</div>
+                    <div className="tracking-[0.3em] uppercase mb-4" style={{ fontSize: '10px', color: SAGE, fontWeight: 600 }}>{d.label}</div>
+                    <div style={{ fontSize: '13px', color: 'rgba(244,239,230,0.65)', lineHeight: 1.75 }}>{d.value}</div>
                   </div>))}
               </div>
             </motion.div>

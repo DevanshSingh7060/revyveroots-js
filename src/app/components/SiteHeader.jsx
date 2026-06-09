@@ -67,9 +67,19 @@ export function SiteHeader() {
                         })}
                     </nav>
 
-                    <div className="flex items-center gap-4">
+                    <div className="flex items-center gap-2 md:gap-4">
                         <Link to="/login" className="hidden md:inline-flex items-center gap-2 tracking-[0.2em] uppercase transition-colors duration-300" style={{ fontSize: '12px', fontWeight: 500, color: headerMuted }} onMouseEnter={(e) => { e.currentTarget.style.color = headerText; }} onMouseLeave={(e) => { e.currentTarget.style.color = headerMuted; }}>
                             <User size={14} strokeWidth={1.6}/> Login
+                        </Link>
+
+                        {/* Mobile Login Icon */}
+                        <Link 
+                            to="/login" 
+                            className="inline-flex md:hidden items-center justify-center w-10 h-10 transition-transform duration-300 hover:scale-105"
+                            style={{ color: headerMuted }}
+                            aria-label="Login"
+                        >
+                            <User size={20} strokeWidth={1.5} />
                         </Link>
 
                         <BurgerMenu headerText={headerText} headerMuted={headerMuted}/>
